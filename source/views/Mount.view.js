@@ -1,5 +1,7 @@
 import Preact from "preact"
-import Dragdrop from "drag-drop/buffer"
+
+import csvparse from "csv-parse/lib/sync"
+import dragdrop from "drag-drop/buffer"
 
 import "views/Mount.view.less"
 
@@ -12,10 +14,20 @@ export default class Mount {
         )
     }
     componentDidMount() {
-        Dragdrop("#mount", (files) => {
+        dragdrop("#mount", (files) => {
             files.forEach((file) => {
-                const contents = files[0].toString("utf8")
-                console.log(contents)
+                try {
+                    let contents = files[0].toString("utf8")
+                    contents = csvparse(contents, {
+                        "cast": true,
+                        "columns": true,
+                    })
+                    console.log(contents[0])
+                    console.log(contents[1])
+                    console.log(contents[2])
+                } catch(error) {
+                    console.error(`Could not parse "${file.name}"`)
+                }
             })
         })
     }
