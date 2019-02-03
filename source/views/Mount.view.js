@@ -6,7 +6,14 @@ import dragdrop from "drag-drop/buffer"
 import "views/Mount.view.less"
 import ExtensionInsight from "views/ExtensionInsight.view.js"
 
-let insights = []
+let insights = [
+    {
+        "type": "Extension",
+        "data": csvparse(window.localStorage.getItem("insight"), {
+            "cast": true, "columns": true
+        })
+    }
+]
 
 export default class Mount {
     render() {
