@@ -4,6 +4,7 @@ import csvparse from "csv-parse/lib/sync"
 import dragdrop from "drag-drop/buffer"
 
 import "views/Mount.view.less"
+import ExtensionInsight from "views/ExtensionInsight.view.js"
 
 let insights = []
 
@@ -64,16 +65,5 @@ export default class Mount {
                 insights.unshift(insight)
             })
         })
-    }
-}
-
-class ExtensionInsight {
-    render() {
-        return (
-            <div class="Insight">
-                <h1>{this.props.insight.data[0]["Extension Name"]}</h1>
-                <h3>{this.props.insight.data[0]["Extension Client ID"]}</h3>
-            </div>
-        )
     }
 }
