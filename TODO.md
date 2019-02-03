@@ -11,3 +11,7 @@ Later:
 - Add controls for setting the date to a specific day.
 - Add support for games insights.
 - Add visualization for bits!
+- Handle responsivity for the funnels on smaller screens.
+- Show the percentage of the peak for each event of the funnel.
+- Make the numbers in the funnel human-readable with hover.
+- Add colors to each event in the funnel.
