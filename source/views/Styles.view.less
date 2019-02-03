@@ -10,13 +10,15 @@
 
 @horizontal-gradient: linear-gradient(90deg,#3d2fae,#b769d1);
 @vertical-gradient: linear-gradient(#3d2fae,#b769d1);
-@border-color: 8px solid #3d2fae;
-@null-color: #392e5c;
+@border-color: #392e5c;
 
 /////////////////
 // Dimensions //
 ///////////////
 
-@gutter: 1em;
 @roundness: 0.25em;
 @golden-ratio: 1.618;
+
+@gutter: 1em;
+@small-gutter: 1em / @golden-ratio;
+@big-gutter: 1em * @golden-ratio;

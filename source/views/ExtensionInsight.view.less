@@ -15,4 +15,70 @@
             font-size: 3em;
         }
     }
+
+    .Funnels {
+        display: flex;
+
+        .Funnel {
+            flex: 1;
+            padding: @gutter @big-gutter;
+
+            .Title {
+                margin-bottom: @gutter;
+            }
+
+            .Events {
+                .Event {
+                    width: 5em;
+                    display: inline-block;
+
+                    &:not(:first-child) {
+                        margin-left: 1em;
+                    }
+
+                    .Bar {
+                        height: 10em;
+                        position: relative;
+
+                        .Fill {
+                            left: 0em;
+                            right: 0em;
+                            bottom: 0em;
+                            min-height: 0.1em;
+                            position: absolute;
+                            background-color: green;
+                        }
+                    }
+
+                    .Value {
+                        margin-top: @small-gutter;
+                    }
+                }
+            }
+        }
+    }
+
+    .Links {
+        padding: 2em;
+
+        .Link {
+            width: 20em;
+            margin: auto;
+            display: block;
+            padding: 0.5em;
+
+            border-width: 1px;
+            border-radius: 4px;
+            border-style: solid;
+            border-color: @border-color;
+
+            color: @border-color;
+            text-decoration: none;
+
+            &:hover {
+                color: @white;
+                background-color: @border-color;
+            }
+        }
+    }
 }
