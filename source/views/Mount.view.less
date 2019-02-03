@@ -21,14 +21,18 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: @white;
-}
-
-.Mount {
+#mount {
     padding: 1em;
+    width: 100%;
+    height: 100%;
+    position: fixed;
 
     color: @black;
     text-align: center;
     font-family: comfortaa;
+    background-color: @white;
+
+    &.drag {
+        background-color: orange !important;
+    }
 }

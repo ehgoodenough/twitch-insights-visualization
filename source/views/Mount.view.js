@@ -1,15 +1,22 @@
 import Preact from "preact"
-
-import model from "models/.js"
+import Dragdrop from "drag-drop/buffer"
 
 import "views/Mount.view.less"
 
 export default class Mount {
     render() {
         return (
-            <div className="Mount">
+            <div id="mount">
                 Hello World!!
             </div>
         )
+    }
+    componentDidMount() {
+        Dragdrop("#mount", (files) => {
+            files.forEach((file) => {
+                const contents = files[0].toString("utf8")
+                console.log(contents)
+            })
+        })
     }
 }

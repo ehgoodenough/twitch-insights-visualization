@@ -14,6 +14,7 @@
     "start": "codeglue --stage=development --mode=server"
   },
   "dependencies": {
+    "drag-drop": "^4.2.0",
     "preact": "^8.2.7",
     "statgrab": "^1.2.0",
     "yaafloop": "^1.1.0"
