@@ -11,7 +11,8 @@
   },
   "scripts": {
     "build": "codeglue --stage=production",
-    "start": "codeglue --stage=development --mode=server"
+    "start": "codeglue --stage=development --mode=server",
+    "deploy": "gh-pages --dist builds/web"
   },
   "dependencies": {
     "csv-parse": "^4.3.1",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.3.1",
-    "codeglue": "^1.6.5"
+    "codeglue": "^1.6.5",
+    "gh-pages": "^2.0.1"
   }
 }
