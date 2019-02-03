@@ -1,4 +1,6 @@
-# Example Codeglue Project #
+# Twitch Insights Visualization #
+
+A drag-and-drop visualization of your Twitch Insights CSV.
 
 ### How to Build ###
 
