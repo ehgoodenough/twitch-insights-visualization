@@ -46,21 +46,27 @@ export default class ExtensionInsight {
                 {
                     "label": "Unique Renderers",
                     "value": data["Unique Renderers" + period],
+                    "color": "#3d2fae",
                 },
                 {
                     "label": "Unique Viewers",
                     "value": data["Unique Viewers" + period],
+                    "color": "#6642ba",
                 },
                 {
                     "label": "Unique Hoverers",
                     "value": data["Unique Mouseenters" + period],
+                    "color": "#8e56c5",
                 },
                 {
                     "label": "Unique Interactors",
                     "value": data["Unique Interactors" + period],
+                    "color": "#b769d1",
                 },
             ]
         }
+        // Colors were generated and selected from:
+        // https://www.colorhexa.com/3d2fae-to-b769d1
     }
     get streamerfunnel() {
         let data = this.props.insight.data[0]
@@ -71,14 +77,17 @@ export default class ExtensionInsight {
                 {
                     "label": "Detail Page Visits",
                     "value": data["Extension Details Page Visits"],
+                    "color": "#3d2fae",
                 },
                 {
                     "label": "Installs",
                     "value": data["Installs"],
+                    "color": "#7a4cc0",
                 },
                 {
                     "label": "Activations",
                     "value": data["Activations"],
+                    "color": "#b769d1",
                 },
             ]
         }
@@ -120,7 +129,7 @@ class FunnelEvent {
         )
     }
     get color() {
-        return "orange"
+        return this.props.event.color
     }
     get height() {
         return (this.props.event.value / this.props.peak) * 10 + "em"
