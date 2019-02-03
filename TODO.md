@@ -1,5 +1,4 @@
 Firstly:
-- Create a build process for preact/less.
 - Add the drag-and-drop or upload method.
 - Parse the excel spreadsheet as json?
 - Render the name of the extension.
