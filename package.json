@@ -1,0 +1,26 @@
+{
+  "name": "twitch-insights-visualization",
+  "version": "0.1.0",
+  "description": "A drag-and-drop visualization of your Twitch Insights CSV.",
+  "contributors": [
+    "Andrew McPherson <@ehgoodenough>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ehgoodenough/twitch-insights-visualization"
+  },
+  "scripts": {
+    "build": "codeglue --stage=production",
+    "start": "codeglue --stage=development --mode=server"
+  },
+  "dependencies": {
+    "preact": "^8.2.7",
+    "statgrab": "^1.2.0",
+    "yaafloop": "^1.1.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/preset-env": "^7.3.1",
+    "codeglue": "^1.6.5"
+  }
+}
