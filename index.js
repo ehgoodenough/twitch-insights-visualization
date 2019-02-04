@@ -445,7 +445,7 @@ function objectToString(o) {
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".ExtensionInsight header {\n  padding: 5em;\n  text-align: center;\n  color: #FBFEF9;\n  background: linear-gradient(90deg, #3d2fae, #b769d1);\n}\n.ExtensionInsight header .Context {\n  font-size: 1.25em;\n}\n.ExtensionInsight header .Name {\n  font-size: 3em;\n  line-height: 1.5em;\n}\n.ExtensionInsight header .Date {\n  font-size: 1.25em;\n}\n.ExtensionInsight .Funnels {\n  display: flex;\n}\n.ExtensionInsight .Funnels .Funnel {\n  flex: 1;\n  padding: 1em 1.618em;\n}\n.ExtensionInsight .Funnels .Funnel .Title {\n  margin-bottom: 1em;\n}\n.ExtensionInsight .Funnels .Funnel .Events {\n  display: flex;\n  justify-content: center;\n}\n.ExtensionInsight .Funnels .Funnel .Events .Event {\n  flex: 1;\n}\n.ExtensionInsight .Funnels .Funnel .Events .Event:not(:first-child) {\n  margin-left: 1em;\n}\n.ExtensionInsight .Funnels .Funnel .Events .Event .Bar {\n  height: 10em;\n  position: relative;\n}\n.ExtensionInsight .Funnels .Funnel .Events .Event .Bar .Fill {\n  left: 0em;\n  right: 0em;\n  bottom: 0em;\n  min-height: 0.1em;\n  position: absolute;\n  background-color: green;\n  border-radius: 0.25em;\n}\n.ExtensionInsight .Funnels .Funnel .Events .Event .Value {\n  margin-top: 0.61804697em;\n  font-weight: bold;\n  cursor: help;\n}\n.ExtensionInsight .Links {\n  padding: 2em;\n}\n.ExtensionInsight .Links .Link {\n  width: 20em;\n  margin: auto;\n  display: block;\n  padding: 0.5em;\n  border-width: 1px;\n  border-style: solid;\n  border-radius: 0.25em;\n  border-color: #392e5c;\n  color: #392e5c;\n  text-decoration: none;\n}\n.ExtensionInsight .Links .Link:hover {\n  color: #FBFEF9;\n  background-color: #392e5c;\n}\n", ""]);
+exports.push([module.i, ".ExtensionInsight menu {\n  background-color: #191923;\n}\n.ExtensionInsight header {\n  padding: 5em 2.5em 6em;\n  text-align: center;\n  color: #FBFEF9;\n  background: linear-gradient(90deg, #3d2fae, #b769d1);\n}\n.ExtensionInsight header .Context {\n  font-size: 1.25em;\n}\n.ExtensionInsight header .Name {\n  font-size: 3em;\n  line-height: 1.5em;\n}\n.ExtensionInsight header .Date {\n  font-size: 1.25em;\n}\n.ExtensionInsight section {\n  margin: auto;\n  max-width: 1200px;\n  display: grid;\n  grid-gap: 1.618em;\n  padding: 1.618em;\n}\n.ExtensionInsight section.Boxes {\n  grid-template-columns: 1fr 1fr 1fr 1fr;\n  padding-top: 0em;\n  margin-top: -2em;\n}\n@media (max-width: 800px) {\n  .ExtensionInsight section.Boxes {\n    grid-template-columns: 1fr 1fr;\n  }\n}\n.ExtensionInsight section.Boxes .Box {\n  padding: 1.618em 1em;\n  color: #FBFEF9;\n  border-style: solid;\n  border-image-slice: 1;\n  border-width: 8px;\n  border-color: #392e5c;\n  border-image-source: linear-gradient(#3d2fae, #b769d1);\n  background-color: #392e5c;\n  box-shadow: 8px 8px 0 0 rgba(0, 0, 0, 0.1);\n}\n.ExtensionInsight section.Boxes .Box .Value {\n  font-size: 2em;\n}\n.ExtensionInsight section.Visualizations {\n  grid-template-columns: 1fr 1fr;\n}\n@media (max-width: 800px) {\n  .ExtensionInsight section.Visualizations {\n    grid-template-columns: 1fr;\n  }\n}\n.ExtensionInsight section.Visualizations .Funnel .Title {\n  margin-bottom: 1em;\n}\n.ExtensionInsight section.Visualizations .Funnel .Events {\n  display: flex;\n  justify-content: center;\n}\n.ExtensionInsight section.Visualizations .Funnel .Events .Event {\n  flex: 1;\n}\n.ExtensionInsight section.Visualizations .Funnel .Events .Event:not(:first-child) {\n  margin-left: 1em;\n}\n.ExtensionInsight section.Visualizations .Funnel .Events .Event .Bar {\n  height: 10em;\n  position: relative;\n}\n.ExtensionInsight section.Visualizations .Funnel .Events .Event .Bar .Fill {\n  left: 0em;\n  right: 0em;\n  bottom: 0em;\n  min-height: 0.1em;\n  position: absolute;\n  background-color: green;\n  border-radius: 0.25em;\n}\n.ExtensionInsight section.Visualizations .Funnel .Events .Event .Value {\n  margin-top: 0.61804697em;\n  font-weight: bold;\n}\n.ExtensionInsight section.Visualizations .Funnel .Events .Event .Label {\n  word-break: break-word;\n}\n@media (max-width: 800px) {\n  .ExtensionInsight section.Visualizations .Funnel .Events .Event .Label {\n    font-size: 0.7em;\n  }\n}\n.ExtensionInsight footer {\n  padding: 2em;\n}\n.ExtensionInsight footer .Link {\n  width: 20em;\n  margin: auto;\n  display: block;\n  padding: 0.5em;\n  border-width: 1px;\n  border-style: solid;\n  border-radius: 0.25em;\n  border-color: #392e5c;\n  color: #392e5c;\n  text-decoration: none;\n}\n.ExtensionInsight footer .Link:hover {\n  color: #FBFEF9;\n  background-color: #392e5c;\n}\n", ""]);
 
 
 
@@ -464,7 +464,7 @@ var urlEscape = __webpack_require__(/*! ../../node_modules/css-loader/dist/runti
 var ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(/*! ../fonts/open-sans.ttf */ "./source/fonts/open-sans.ttf"));
 
 // Module
-exports.push([module.i, "@font-face {\n  font-weight: 400;\n  font-family: \"open-sans\";\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"truetype\");\n}\n* {\n  margin: 0px;\n  padding: 0px;\n  user-select: none;\n  box-sizing: border-box;\n}\n#mount {\n  width: 100%;\n  height: 100%;\n  position: fixed;\n  color: #191923;\n  text-align: center;\n  font-family: open-sans;\n  background-color: #FBFEF9;\n}\n#mount.drag {\n  border-width: 8px;\n  border-style: dashed;\n  border-color: #392e5c;\n}\n", ""]);
+exports.push([module.i, "@font-face {\n  font-weight: 400;\n  font-family: \"open-sans\";\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"truetype\");\n}\n* {\n  margin: 0px;\n  padding: 0px;\n  user-select: none;\n  box-sizing: border-box;\n}\n#mount {\n  color: #191923;\n  text-align: center;\n  font-family: open-sans;\n  background-color: #FBFEF9;\n}\n#mount.drag {\n  border-width: 8px;\n  border-style: dashed;\n  border-color: #392e5c;\n}\n", ""]);
 
 
 
@@ -9414,6 +9414,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.mjs");
 /* harmony import */ var views_ExtensionInsight_view_less__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! views/ExtensionInsight.view.less */ "./source/views/ExtensionInsight.view.less");
 /* harmony import */ var views_ExtensionInsight_view_less__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(views_ExtensionInsight_view_less__WEBPACK_IMPORTED_MODULE_1__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -9421,7 +9429,20 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 
+ // Colors were generated and selected from:
+// https://www.colorhexa.com/3d2fae-to-b769d1
 
+function toPercentage(value) {
+  return Math.round(value * 100) + "%";
+}
+
+function toCount(value) {
+  if (value < 1000) {
+    return value;
+  }
+
+  return Math.round(value / 1000) + "k";
+}
 
 var ExtensionInsight =
 /*#__PURE__*/
@@ -9435,21 +9456,43 @@ function () {
     value: function render() {
       return preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("div", {
         class: "ExtensionInsight"
-      }, preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("title", null, this.props.insight.data[0]["Extension Name"], " - Twitch Insights Visualization"), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("header", null, preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("div", {
+      }, preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("title", null, this.props.insight["Extension Name"], " - Twitch Insights Visualization"), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("header", null, preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("div", {
         class: "Context"
       }, "Twitch Extension Insights"), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("div", {
         class: "Name"
-      }, this.props.insight.data[0]["Extension Name"]), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("div", {
+      }, this.props.insight["Extension Name"]), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("div", {
         class: "Date"
-      }, "as of ", this.props.insight.data[0]["Date"])), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("section", {
-        class: "Funnels"
-      }, preact__WEBPACK_IMPORTED_MODULE_0__["default"].h(Funnel, {
-        funnel: this.viewerfunnel
-      }), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h(Funnel, {
-        funnel: this.streamerfunnel
+      }, "for ", this.props.insight["Date"])), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("section", {
+        class: "Boxes"
+      }, preact__WEBPACK_IMPORTED_MODULE_0__["default"].h(Box, {
+        box: {
+          "label": "Unique Active Channels",
+          "value": toCount(this.props.insight["Unique Active Channels Last 30 Days"])
+        }
+      }), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h(Box, {
+        box: {
+          "label": "Unique Viewers",
+          "value": toCount(this.props.insight["Unique Viewers Last 30 Days"])
+        }
+      }), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h(Box, {
+        box: {
+          "label": "Unique Interactors",
+          "value": toCount(this.props.insight["Unique Interactors Last 30 Days"])
+        }
+      }), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h(Box, {
+        box: {
+          "label": "Unique Interaction Rate",
+          "value": toPercentage(this.props.insight["Interaction Rate"])
+        }
       })), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("section", {
-        class: "Links"
-      }, preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("a", {
+        class: "Visualizations"
+      }, preact__WEBPACK_IMPORTED_MODULE_0__["default"].h(Funnel, {
+        funnel: this.streamerActionFunnel
+      }), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h(Funnel, {
+        funnel: this.viewerActionFunnel
+      }), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h(Funnel, {
+        funnel: this.viewerCountFunnel
+      })), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("footer", null, preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("a", {
         class: "Link",
         href: this.url,
         target: "_blank"
@@ -9458,55 +9501,73 @@ function () {
   }, {
     key: "url",
     get: function get() {
-      return "https://www.twitch.tv/ext/" + this.props.insight.data[0]["Extension Client ID"];
+      return "https://www.twitch.tv/ext/" + this.props.insight["Extension Client ID"];
     }
   }, {
-    key: "viewerfunnel",
+    key: "viewerActionFunnel",
     get: function get() {
-      var data = this.props.insight.data[0];
-      var period = " Last 30 Days";
       return {
-        "title": "Viewer Funnel -" + (period || " Today"),
-        "peak": data["Unique Renderers" + period],
+        "title": "Viewer Actions Funnel - Today",
         "events": [{
-          "label": "Unique Renderers",
-          "value": data["Unique Renderers" + period],
+          "label": "Renders",
+          "value": this.props.insight["Renders"],
           "color": "#3d2fae"
         }, {
-          "label": "Unique Viewers",
-          "value": data["Unique Viewers" + period],
+          "label": "Views",
+          "value": this.props.insight["Views"],
           "color": "#6642ba"
         }, {
-          "label": "Unique Hoverers",
-          "value": data["Unique Mouseenters" + period],
+          "label": "Hovers",
+          "value": this.props.insight["Mouseenters"],
           "color": "#8e56c5"
         }, {
-          "label": "Unique Interactors",
-          "value": data["Unique Interactors" + period],
+          "label": "Interactions",
+          "value": this.props.insight["Clicks"],
           "color": "#b769d1"
-        }] // Colors were generated and selected from:
-        // https://www.colorhexa.com/3d2fae-to-b769d1
-
+        }]
       };
     }
   }, {
-    key: "streamerfunnel",
+    key: "viewerCountFunnel",
     get: function get() {
-      var data = this.props.insight.data[0];
+      var period = " Last 30 Days";
       return {
-        "title": "Streamer Funnel - Today",
-        "peak": data["Extension Details Page Visits"],
+        "title": "Viewer Funnel -" + (period || " Today"),
+        "events": [{
+          "label": "Unique Renderers",
+          "value": this.props.insight["Unique Renderers" + period],
+          "color": "#3d2fae"
+        }, {
+          "label": "Unique Viewers",
+          "value": this.props.insight["Unique Viewers" + period],
+          "color": "#6642ba"
+        }, {
+          "label": "Unique Hoverers",
+          "value": this.props.insight["Unique Mouseenters" + period],
+          "color": "#8e56c5"
+        }, {
+          "label": "Unique Interactors",
+          "value": this.props.insight["Unique Interactors" + period],
+          "color": "#b769d1"
+        }]
+      };
+    }
+  }, {
+    key: "streamerActionFunnel",
+    get: function get() {
+      return {
+        "title": "Streamer Actions Funnel - Today",
         "events": [{
           "label": "Detail Page Visits",
-          "value": data["Extension Details Page Visits"],
+          "value": this.props.insight["Extension Details Page Visits"],
           "color": "#3d2fae"
         }, {
           "label": "Installs",
-          "value": data["Installs"],
+          "value": this.props.insight["Installs"],
           "color": "#7a4cc0"
         }, {
           "label": "Activations",
-          "value": data["Activations"],
+          "value": this.props.insight["Activations"],
           "color": "#b769d1"
         }]
       };
@@ -9518,6 +9579,29 @@ function () {
 
 
 
+var Box =
+/*#__PURE__*/
+function () {
+  function Box() {
+    _classCallCheck(this, Box);
+  }
+
+  _createClass(Box, [{
+    key: "render",
+    value: function render() {
+      return preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("div", {
+        class: "Box"
+      }, preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("div", {
+        class: "Value"
+      }, this.props.box.value), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("div", {
+        class: "Label"
+      }, this.props.box.label));
+    }
+  }]);
+
+  return Box;
+}();
+
 var Funnel =
 /*#__PURE__*/
 function () {
@@ -9528,10 +9612,11 @@ function () {
   _createClass(Funnel, [{
     key: "render",
     value: function render() {
-      var _this = this;
-
+      var peak = Math.max.apply(Math, _toConsumableArray(this.props.funnel.events.map(function (event) {
+        return event.value;
+      })));
       return preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("div", {
-        class: "Funnel"
+        class: "Funnel Visualization"
       }, preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("div", {
         class: "Title"
       }, this.props.funnel.title), preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("div", {
@@ -9539,7 +9624,7 @@ function () {
       }, this.props.funnel.events.map(function (event) {
         return preact__WEBPACK_IMPORTED_MODULE_0__["default"].h(FunnelEvent, {
           event: event,
-          peak: _this.props.funnel.peak
+          peak: peak
         });
       })));
     }
@@ -9588,11 +9673,7 @@ function () {
   }, {
     key: "value",
     get: function get() {
-      if (this.props.event.value < 1000) {
-        return this.props.event.value;
-      }
-
-      return Math.round(this.props.event.value / 1000) + "k";
+      return toCount(this.props.event.value);
     }
   }, {
     key: "label",
@@ -9665,9 +9746,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var insights = [// {
+var collections = [// {
   //     "type": "Extension",
-  //     "data": csvparse(window.localStorage.getItem("insight"), {
+  //     "insights": csvparse(window.localStorage.getItem("insight"), {
   //         "cast": true, "columns": true
   //     })
   // }
@@ -9693,15 +9774,15 @@ function () {
       drag_drop_buffer__WEBPACK_IMPORTED_MODULE_2___default()("#mount", function (files) {
         files.forEach(function (file) {
           // Create a new insight object.
-          var insight = {
+          var collection = {
             "filename": file.name,
             "filesize": file.size // Attempt to parse the insights data.
 
           };
 
           try {
-            insight.data = file.toString("utf8");
-            insight.data = csv_parse_lib_sync__WEBPACK_IMPORTED_MODULE_1___default()(insight.data, {
+            collection.insights = file.toString("utf8");
+            collection.insights = csv_parse_lib_sync__WEBPACK_IMPORTED_MODULE_1___default()(collection.insights, {
               "cast": true,
               "columns": true
             });
@@ -9712,25 +9793,25 @@ function () {
           } // Recognize the insights type.
 
 
-          if (!!insight.data[0]["Extension Name"]) {
-            insight.type = "Extension";
+          if (!!collection.insights[0]["Extension Name"]) {
+            collection.type = "Extension";
           } // Add the insights to the store.
 
 
-          insights.unshift(insight);
+          collections.unshift(collection);
         });
       });
     }
   }, {
     key: "content",
     get: function get() {
-      if (insights.length === 0) {
+      if (collections.length === 0) {
         return preact__WEBPACK_IMPORTED_MODULE_0__["default"].h("div", null, "Drag-and-drop your Twitch Insights CSV.");
       }
 
-      if (insights[0].type === "Extension") {
+      if (collections[0].type === "Extension") {
         return preact__WEBPACK_IMPORTED_MODULE_0__["default"].h(views_ExtensionInsight_view_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          insight: insights[0]
+          insight: collections[0].insights[0]
         });
       }
 
