@@ -6,10 +6,10 @@ import dragdrop from "drag-drop/buffer"
 import "views/Mount.view.less"
 import ExtensionInsight from "views/ExtensionInsight.view.js"
 
-let insights = [
+let collections = [
     {
         "type": "Extension",
-        "data": csvparse(window.localStorage.getItem("insight"), {
+        "insights": csvparse(window.localStorage.getItem("insight"), {
             "cast": true, "columns": true
         })
     }
@@ -24,16 +24,16 @@ export default class Mount {
         )
     }
     get content() {
-        if(insights.length === 0) {
+        if(collections.length === 0) {
             return (
                 <div>
                     Drag-and-drop your Twitch Insights CSV.
                 </div>
             )
         }
-        if(insights[0].type === "Extension") {
+        if(collections[0].type === "Extension") {
             return (
-                <ExtensionInsight insight={insights[0]}/>
+                <ExtensionInsight insight={collections[0].insights[0]}/>
             )
         }
         return (
@@ -46,15 +46,15 @@ export default class Mount {
         dragdrop("#mount", (files) => {
             files.forEach((file) => {
                 // Create a new insight object.
-                let insight = {
+                let collection = {
                     "filename": file.name,
                     "filesize": file.size,
                 }
 
                 // Attempt to parse the insights data.
                 try {
-                    insight.data = file.toString("utf8")
-                    insight.data = csvparse(insight.data, {
+                    collection.insights = file.toString("utf8")
+                    collection.insights = csvparse(collection.insights, {
                         "cast": true, "columns": true
                     })
                 } catch(error) {
@@ -64,12 +64,12 @@ export default class Mount {
                 }
 
                 // Recognize the insights type.
-                if(!!insight.data[0]["Extension Name"]) {
-                    insight.type = "Extension"
+                if(!!collection.insights[0]["Extension Name"]) {
+                    collection.type = "Extension"
                 }
 
                 // Add the insights to the store.
-                insights.unshift(insight)
+                collections.unshift(collection)
             })
         })
     }

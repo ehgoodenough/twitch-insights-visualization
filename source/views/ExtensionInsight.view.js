@@ -10,7 +10,7 @@ export default class ExtensionInsight {
         return (
             <div class="ExtensionInsight">
                 <title>
-                    {this.props.insight.data[0]["Extension Name"]} -
+                    {this.props.insight["Extension Name"]} -
                     Twitch Insights Visualization
                 </title>
                 <header>
@@ -18,12 +18,18 @@ export default class ExtensionInsight {
                         Twitch Extension Insights
                     </div>
                     <div class="Name">
-                        {this.props.insight.data[0]["Extension Name"]}
+                        {this.props.insight["Extension Name"]}
                     </div>
                     <div class="Date">
-                        as of {this.props.insight.data[0]["Date"]}
+                        as of {this.props.insight["Date"]}
                     </div>
                 </header>
+                <section class="Boxes">
+                    <div class="Box">
+                        <div class="Label">Unique Channels</div>
+                        <div class="Value">{this.props.insight["Unique Active Channels Last 30 Days"]}</div>
+                    </div>
+                </section>
                 <section class="Visualizations">
                     <Funnel funnel={this.streamerActionFunnel}/>
                     <Funnel funnel={this.viewerActionFunnel}/>
@@ -38,86 +44,80 @@ export default class ExtensionInsight {
         )
     }
     get url() {
-        return "https://www.twitch.tv/ext/" + this.props.insight.data[0]["Extension Client ID"]
+        return "https://www.twitch.tv/ext/" + this.props.insight["Extension Client ID"]
     }
     get viewerActionFunnel() {
-        let data = this.props.insight.data[0]
         return {
             "title": "Viewer Actions Funnel - Today",
-            "peak": data["Renders"],
             "events": [
                 {
                     "label": "Renders",
-                    "value": data["Renders"],
+                    "value": this.props.insight["Renders"],
                     "color": "#3d2fae",
                 },
                 {
                     "label": "Views",
-                    "value": data["Views"],
+                    "value": this.props.insight["Views"],
                     "color": "#6642ba",
                 },
                 {
                     "label": "Hovers",
-                    "value": data["Mouseenters"],
+                    "value": this.props.insight["Mouseenters"],
                     "color": "#8e56c5",
                 },
                 {
                     "label": "Interactions",
-                    "value": data["Clicks"],
+                    "value": this.props.insight["Clicks"],
                     "color": "#b769d1",
                 },
             ]
         }
     }
     get viewerCountFunnel() {
-        let data = this.props.insight.data[0]
         let period = " Last 30 Days"
         return {
             "title": "Viewer Funnel -" + (period || " Today"),
-            "peak": data["Unique Renderers" + period],
             "events": [
                 {
                     "label": "Unique Renderers",
-                    "value": data["Unique Renderers" + period],
+                    "value": this.props.insight["Unique Renderers" + period],
                     "color": "#3d2fae",
                 },
                 {
                     "label": "Unique Viewers",
-                    "value": data["Unique Viewers" + period],
+                    "value": this.props.insight["Unique Viewers" + period],
                     "color": "#6642ba",
                 },
                 {
                     "label": "Unique Hoverers",
-                    "value": data["Unique Mouseenters" + period],
+                    "value": this.props.insight["Unique Mouseenters" + period],
                     "color": "#8e56c5",
                 },
                 {
                     "label": "Unique Interactors",
-                    "value": data["Unique Interactors" + period],
+                    "value": this.props.insight["Unique Interactors" + period],
                     "color": "#b769d1",
                 },
             ]
         }
     }
     get streamerActionFunnel() {
-        let data = this.props.insight.data[0]
         return {
             "title": "Streamer Funnel - Today",
-            "peak": data["Extension Details Page Visits"],
             "events": [
                 {
                     "label": "Detail Page Visits",
-                    "value": data["Extension Details Page Visits"],
+                    "value": this.props.insight["Extension Details Page Visits"],
                     "color": "#3d2fae",
                 },
                 {
                     "label": "Installs",
-                    "value": data["Installs"],
+                    "value": this.props.insight["Installs"],
                     "color": "#7a4cc0",
                 },
                 {
                     "label": "Activations",
-                    "value": data["Activations"],
+                    "value": this.props.insight["Activations"],
                     "color": "#b769d1",
                 },
             ]
@@ -127,12 +127,13 @@ export default class ExtensionInsight {
 
 class Funnel {
     render() {
+        let peak = Math.max(...this.props.funnel.events.map((event) => event.value))
         return (
             <div class="Funnel Visualization">
                 <div class="Title">{this.props.funnel.title}</div>
                 <div class="Events">
                     {this.props.funnel.events.map((event) => (
-                        <FunnelEvent event={event} peak={this.props.funnel.peak}/>
+                        <FunnelEvent event={event} peak={peak}/>
                     ))}
                 </div>
             </div>
