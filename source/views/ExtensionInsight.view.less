@@ -31,101 +31,101 @@
         max-width: @max-point;
 
         display: grid;
-        grid-template-columns: 1fr;
         grid-gap: @big-gutter;
         padding: @big-gutter;
-    }
 
-    section.Boxes {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        @media(max-width: @break-point) {
-            grid-template-columns: 1fr 1fr;
+        &.Boxes {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            @media(max-width: @break-point) {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            padding-top: 0em;
+            margin-top: -2em;
         }
 
-        padding-top: 0em;
-        margin-top: -2em;
-
-        .Box {
-            // flex: 1;
-            //
-            // &:not(:first-child) {
-            //     margin-left: @big-gutter;
-            // }
-
-            padding: @big-gutter @gutter;
-
-            color: @white;
-
-            border-style: solid;
-            border-image-slice: 1;
-            border-width: @border-width;
-            border-color: @border-color;
-            border-image-source: @vertical-gradient;
-
-            background-color: @purple;
-            box-shadow: @border-width @border-width 0 0 @faded-gray;
-
-            .Value {
-                font-size: 2em;
-            }
-            .Label {
-                font-size: @small-text;
-                text-transform: lowercase;
-            }
-        }
-    }
-
-    section.Graphs {
-        height: 20em;
-    }
-
-    section.Visualizations {
-        grid-template-columns: 1fr 1fr 1fr;
-        @media(max-width: @break-point) {
+        &.TimeGraphs {
+            height: 20em;
             grid-template-columns: 1fr;
         }
 
-        .Funnel.Visualization {
-            .Title {
-                margin-bottom: @gutter;
+        &.FunnelCharts {
+            grid-template-columns: 1fr 1fr 1fr;
+            @media(max-width: @break-point) {
+                grid-template-columns: 1fr;
             }
+        }
+    }
 
-            .Events {
-                display: flex;
-                justify-content: center;
+    .Box {
+        // flex: 1;
+        //
+        // &:not(:first-child) {
+        //     margin-left: @big-gutter;
+        // }
 
-                .Event {
-                    flex: 1;
-                    // width: 5em;
+        padding: @big-gutter @gutter;
 
-                    &:not(:first-child) {
-                        margin-left: 1em;
+        color: @white;
+
+        border-style: solid;
+        border-image-slice: 1;
+        border-width: @border-width;
+        border-color: @border-color;
+        border-image-source: @vertical-gradient;
+
+        background-color: @purple;
+        box-shadow: @border-width @border-width 0 0 @faded-gray;
+
+        .Value {
+            font-size: 2em;
+        }
+        .Label {
+            font-size: @small-text;
+            text-transform: lowercase;
+        }
+    }
+
+    .Funnel.Visualization {
+        .Title {
+            margin-bottom: @gutter;
+        }
+
+        .Events {
+            display: flex;
+            justify-content: center;
+
+            .Event {
+                flex: 1;
+                // width: 5em;
+
+                &:not(:first-child) {
+                    margin-left: 1em;
+                }
+
+                .Bar {
+                    height: 10em;
+                    position: relative;
+
+                    .Fill {
+                        left: 0em;
+                        right: 0em;
+                        bottom: 0em;
+                        min-height: 0.1em;
+                        position: absolute;
+                        background-color: green;
+                        border-radius: @roundness;
                     }
+                }
 
-                    .Bar {
-                        height: 10em;
-                        position: relative;
+                .Value {
+                    margin-top: @small-gutter;
+                    font-weight: bold;
+                }
 
-                        .Fill {
-                            left: 0em;
-                            right: 0em;
-                            bottom: 0em;
-                            min-height: 0.1em;
-                            position: absolute;
-                            background-color: green;
-                            border-radius: @roundness;
-                        }
-                    }
-
-                    .Value {
-                        margin-top: @small-gutter;
-                        font-weight: bold;
-                    }
-
-                    .Label {
-                        word-break: break-word;
-                        font-size: 0.7em;
-                    }
+                .Label {
+                    word-break: break-word;
+                    font-size: 0.7em;
                 }
             }
         }

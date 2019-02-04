@@ -54,10 +54,10 @@ export default class ExtensionInsight {
                         "value": toPercentage(this.props.insight["Interaction Rate"]),
                     }}/>
                 </section>
-                <section class="Graphs">
+                <section class="TimeGraphs">
                     <Graph graph={this.channelGraph}/>
                 </section>
-                <section class="Visualizations">
+                <section class="FunnelCharts">
                     <Funnel funnel={this.viewerCountFunnel}/>
                     <Funnel funnel={this.streamerActionFunnel}/>
                     <Funnel funnel={this.viewerActionFunnel}/>
