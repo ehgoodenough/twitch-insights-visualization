@@ -22,13 +22,44 @@
         }
     }
 
+    .Boxes {
+        display: flex;
+        padding: 0em @big-gutter @big-gutter;
+        margin-top: -2em;
+
+        .Box {
+            flex: 1;
+
+            &:not(:first-child) {
+                margin-left: @big-gutter;
+            }
+
+            padding: @big-gutter @gutter;
+
+            color: @white;
+
+            border-style: solid;
+            border-image-slice: 1;
+            border-width: @border-width;
+            border-color: @border-color;
+            border-image-source: @vertical-gradient;
+
+            background-color: @purple;
+            box-shadow: @border-width @border-width 0 0 @faded-gray;
+
+            .Value {
+                font-size: 2em;
+            }
+        }
+    }
+
     .Visualizations {
         display: flex;
         flex-wrap: wrap;
 
         .Visualization {
             width: 50%;
-            padding: @gutter @big-gutter;
+            padding: @big-gutter;
 
             @media(max-width: @break-point) {
                 width: 100%;
@@ -70,7 +101,6 @@
                     .Value {
                         margin-top: @small-gutter;
                         font-weight: bold;
-                        cursor: help;
                     }
 
                     .Label {

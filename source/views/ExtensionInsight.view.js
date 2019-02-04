@@ -5,6 +5,18 @@ import "views/ExtensionInsight.view.less"
 // Colors were generated and selected from:
 // https://www.colorhexa.com/3d2fae-to-b769d1
 
+function toPercentage(value) {
+    return Math.round(value * 100) + "%"
+}
+
+function toCount(value) {
+    if(value < 1000) {
+        return value
+    }
+
+    return Math.round(value / 1000) + "k"
+}
+
 export default class ExtensionInsight {
     render() {
         return (
@@ -21,14 +33,26 @@ export default class ExtensionInsight {
                         {this.props.insight["Extension Name"]}
                     </div>
                     <div class="Date">
-                        as of {this.props.insight["Date"]}
+                        for {this.props.insight["Date"]}
                     </div>
                 </header>
                 <section class="Boxes">
-                    <div class="Box">
-                        <div class="Label">Unique Channels</div>
-                        <div class="Value">{this.props.insight["Unique Active Channels Last 30 Days"]}</div>
-                    </div>
+                    <Box box={{
+                        "label": "Unique Active Channels",
+                        "value": toCount(this.props.insight["Unique Active Channels Last 30 Days"]),
+                    }}/>
+                    <Box box={{
+                        "label": "Unique Viewers",
+                        "value": toCount(this.props.insight["Unique Viewers Last 30 Days"]),
+                    }}/>
+                    <Box box={{
+                        "label": "Unique Interactors",
+                        "value": toCount(this.props.insight["Unique Interactors Last 30 Days"]),
+                    }}/>
+                    <Box box={{
+                        "label": "Unique Interaction Rate",
+                        "value": toPercentage(this.props.insight["Interaction Rate"]),
+                    }}/>
                 </section>
                 <section class="Visualizations">
                     <Funnel funnel={this.streamerActionFunnel}/>
@@ -125,6 +149,17 @@ export default class ExtensionInsight {
     }
 }
 
+class Box {
+    render() {
+        return (
+            <div class="Box">
+                <div class="Value">{this.props.box.value}</div>
+                <div class="Label">{this.props.box.label}</div>
+            </div>
+        )
+    }
+}
+
 class Funnel {
     render() {
         let peak = Math.max(...this.props.funnel.events.map((event) => event.value))
@@ -167,11 +202,7 @@ class FunnelEvent {
         return (this.props.event.value / this.props.peak) * 10 + "em"
     }
     get value() {
-        if(this.props.event.value < 1000) {
-            return this.props.event.value
-        }
-
-        return Math.round(this.props.event.value / 1000) + "k"
+        return toCount(this.props.event.value)
     }
     get label() {
         return this.props.event.label
