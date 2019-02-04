@@ -2,7 +2,7 @@
 
 .ExtensionInsight {
     header {
-        padding: 5em;
+        padding: 5em 2.5em;
         text-align: center;
 
         color: @white;
@@ -22,13 +22,20 @@
         }
     }
 
-    .Funnels {
+    .Visualizations {
         display: flex;
+        flex-wrap: wrap;
 
-        .Funnel {
-            flex: 1;
+        .Visualization {
+            width: 50%;
             padding: @gutter @big-gutter;
 
+            @media(max-width: @break-point) {
+                width: 100%;
+            }
+        }
+
+        .Funnel {
             .Title {
                 margin-bottom: @gutter;
             }
@@ -65,12 +72,20 @@
                         font-weight: bold;
                         cursor: help;
                     }
+
+                    .Label {
+                        word-break: break-word;
+
+                        @media(max-width: @break-point) {
+                            font-size: 0.7em;
+                        }
+                    }
                 }
             }
         }
     }
 
-    .Links {
+    footer {
         padding: 2em;
 
         .Link {

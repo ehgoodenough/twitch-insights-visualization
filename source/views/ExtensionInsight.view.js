@@ -2,6 +2,9 @@ import Preact from "preact"
 
 import "views/ExtensionInsight.view.less"
 
+// Colors were generated and selected from:
+// https://www.colorhexa.com/3d2fae-to-b769d1
+
 export default class ExtensionInsight {
     render() {
         return (
@@ -21,22 +24,52 @@ export default class ExtensionInsight {
                         as of {this.props.insight.data[0]["Date"]}
                     </div>
                 </header>
-                <section class="Funnels">
-                    <Funnel funnel={this.viewerfunnel}/>
-                    <Funnel funnel={this.streamerfunnel}/>
+                <section class="Visualizations">
+                    <Funnel funnel={this.streamerActionFunnel}/>
+                    <Funnel funnel={this.viewerActionFunnel}/>
+                    <Funnel funnel={this.viewerCountFunnel}/>
                 </section>
-                <section class="Links">
+                <footer>
                     <a class="Link" href={this.url} target="_blank">
                         See extension on Twitch
                     </a>
-                </section>
+                </footer>
             </div>
         )
     }
     get url() {
         return "https://www.twitch.tv/ext/" + this.props.insight.data[0]["Extension Client ID"]
     }
-    get viewerfunnel() {
+    get viewerActionFunnel() {
+        let data = this.props.insight.data[0]
+        return {
+            "title": "Viewer Actions Funnel - Today",
+            "peak": data["Renders"],
+            "events": [
+                {
+                    "label": "Renders",
+                    "value": data["Renders"],
+                    "color": "#3d2fae",
+                },
+                {
+                    "label": "Views",
+                    "value": data["Views"],
+                    "color": "#6642ba",
+                },
+                {
+                    "label": "Hovers",
+                    "value": data["Mouseenters"],
+                    "color": "#8e56c5",
+                },
+                {
+                    "label": "Interactions",
+                    "value": data["Clicks"],
+                    "color": "#b769d1",
+                },
+            ]
+        }
+    }
+    get viewerCountFunnel() {
         let data = this.props.insight.data[0]
         let period = " Last 30 Days"
         return {
@@ -65,10 +98,8 @@ export default class ExtensionInsight {
                 },
             ]
         }
-        // Colors were generated and selected from:
-        // https://www.colorhexa.com/3d2fae-to-b769d1
     }
-    get streamerfunnel() {
+    get streamerActionFunnel() {
         let data = this.props.insight.data[0]
         return {
             "title": "Streamer Funnel - Today",
@@ -97,7 +128,7 @@ export default class ExtensionInsight {
 class Funnel {
     render() {
         return (
-            <div class="Funnel">
+            <div class="Funnel Visualization">
                 <div class="Title">{this.props.funnel.title}</div>
                 <div class="Events">
                     {this.props.funnel.events.map((event) => (
