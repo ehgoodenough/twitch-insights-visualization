@@ -1,8 +1,12 @@
 @import "./Styles.view.less";
 
 .ExtensionInsight {
+    menu {
+        background-color: @black;
+    }
+
     header {
-        padding: 5em 2.5em;
+        padding: 5em 2.5em 6em;
         text-align: center;
 
         color: @white;
@@ -22,17 +26,30 @@
         }
     }
 
-    .Boxes {
-        display: flex;
-        padding: 0em @big-gutter @big-gutter;
+    section {
+        margin: auto;
+        max-width: @max-point;
+
+        display: grid;
+        grid-gap: @big-gutter;
+        padding: @big-gutter;
+    }
+
+    section.Boxes {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        @media(max-width: @break-point) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        padding-top: 0em;
         margin-top: -2em;
 
         .Box {
-            flex: 1;
-
-            &:not(:first-child) {
-                margin-left: @big-gutter;
-            }
+            // flex: 1;
+            //
+            // &:not(:first-child) {
+            //     margin-left: @big-gutter;
+            // }
 
             padding: @big-gutter @gutter;
 
@@ -53,17 +70,10 @@
         }
     }
 
-    .Visualizations {
-        display: flex;
-        flex-wrap: wrap;
-
-        .Visualization {
-            width: 50%;
-            padding: @big-gutter;
-
-            @media(max-width: @break-point) {
-                width: 100%;
-            }
+    section.Visualizations {
+        grid-template-columns: 1fr 1fr;
+        @media(max-width: @break-point) {
+            grid-template-columns: 1fr;
         }
 
         .Funnel {

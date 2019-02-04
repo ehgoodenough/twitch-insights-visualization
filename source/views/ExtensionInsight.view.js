@@ -127,7 +127,7 @@ export default class ExtensionInsight {
     }
     get streamerActionFunnel() {
         return {
-            "title": "Streamer Funnel - Today",
+            "title": "Streamer Actions Funnel - Today",
             "events": [
                 {
                     "label": "Detail Page Visits",
