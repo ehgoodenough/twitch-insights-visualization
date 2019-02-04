@@ -1,6 +1,3 @@
-- Pretty up the initial file handling.
-- Set the page title during all the pre-visualization screens (instead of just localhost).
-
 Dates:
 - Add controls for setting the date to a specific day.
 - Add controls to switch between 1 day, 7 day or 30 day.
