@@ -46,11 +46,11 @@ export default class ExtensionInsight {
                     <Box box={{"label": "Unique Viewers", "value": toCount(this.props.insight["Unique Viewers Last 30 Days"]),
                     }}/>
                     <Box box={{
-                        "label": "Unique Interactors",
+                        "label": "Unique Clickers",
                         "value": toCount(this.props.insight["Unique Interactors Last 30 Days"]),
                     }}/>
                     <Box box={{
-                        "label": "Unique Interaction Rate",
+                        "label": "Unique Click Rate",
                         "value": toPercentage(this.props.insight["Interaction Rate"]),
                     }}/>
                 </section>
@@ -118,7 +118,7 @@ export default class ExtensionInsight {
                     "color": "#8e56c5",
                 },
                 {
-                    "label": "Interactions",
+                    "label": "Clicks",
                     "value": this.props.insight["Clicks"],
                     "color": "#b769d1",
                 },
@@ -146,7 +146,7 @@ export default class ExtensionInsight {
                     "color": "#8e56c5",
                 },
                 {
-                    "label": "Unique Interactors",
+                    "label": "Unique Clickers",
                     "value": this.props.insight["Unique Interactors" + period],
                     "color": "#b769d1",
                 },
@@ -158,7 +158,7 @@ export default class ExtensionInsight {
             "title": "Streamer Actions Funnel - Today",
             "events": [
                 {
-                    "label": "Detail Page Visits",
+                    "label": "Browses",
                     "value": this.props.insight["Extension Details Page Visits"],
                     "color": "#3d2fae",
                 },
@@ -193,17 +193,23 @@ class Graph {
         return (
             <div class="Graph Visualization">
                 <div class="Title">{this.props.graph.title}</div>
-                <Recharts.ResponsiveContainer width="99%" height="99%">
-                    <Recharts.LineChart data={this.props.graph.data}>
-                        <Recharts.CartesianGrid stroke="#CCC"/>
+                <Recharts.ResponsiveContainer width="100%" height="100%">
+                    <Recharts.AreaChart data={this.props.graph.data}>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="#3d2fae" stopOpacity={0.8}/>
+                                <stop offset="95%" stopColor="#b769d1" stopOpacity={0}/>
+                            </linearGradient>
+                        </defs>
+                        <Recharts.CartesianGrid stroke="#CCC" strokeDasharray="3 3"/>
                         <Recharts.XAxis dataKey="date" minTickGap={30} axisLine={false}/>
                         <Recharts.YAxis orientation="right" axisLine={false} mirror={true}/>
                         {true ||<Recharts.Legend/>}
                         <Recharts.Tooltip animationDuration={100}/>
                         {Object.keys(this.props.graph.data[0]).filter((key) => key !== "date").map((key) => (
-                            <Recharts.Line dataKey={key} stroke="#3d2fae" dot={false} type="monotone"/>
+                            <Recharts.Area dataKey={key} stroke="#3d2fae" fillOpacity={1} fill="url(#gradient)" type="monotone"/>
                         ))}
-                    </Recharts.LineChart>
+                    </Recharts.AreaChart>
                 </Recharts.ResponsiveContainer>
             </div>
         )
