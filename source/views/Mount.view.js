@@ -4,6 +4,7 @@ import csvparse from "csv-parse/lib/sync"
 import dragdrop from "drag-drop/buffer"
 
 import "views/Mount.view.less"
+import view from "views/.js"
 import ExtensionInsight from "views/ExtensionInsight.view.js"
 
 let collections = [
@@ -70,6 +71,7 @@ export default class Mount {
 
                 // Add the insights to the store.
                 collections.unshift(collection)
+                view.render()
             })
         })
     }

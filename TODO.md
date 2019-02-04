@@ -9,6 +9,8 @@ Dates:
     - Aggregate the actions data for 1/7/30 days, for parity.
 
 Visualizations:
+- Add a graph for unique viewers / hoverers / interactors over time.
+- Make the graphs look more... on brand.
 - Show the percentage of the peak for each event of the funnel.
 - Click on a number box to jump to a relevant visualization.
 

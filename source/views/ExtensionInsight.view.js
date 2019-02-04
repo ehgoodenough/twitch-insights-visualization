@@ -93,7 +93,7 @@ export default class ExtensionInsight {
             }).map((insight) => {
                 return {
                     "date": insight["Date"],
-                    "unique-active-channels": insight["Unique Active Channels"]
+                    "unique-active-channels": insight["Unique Active Channels"],
                 }
             }).reverse()
         }
@@ -196,9 +196,9 @@ class Graph {
                 <Recharts.ResponsiveContainer width="99%" height="99%">
                     <Recharts.LineChart data={this.props.graph.data}>
                         <Recharts.CartesianGrid stroke="#CCC"/>
-                        <Recharts.XAxis dataKey="date" hide={true}/>
+                        <Recharts.XAxis dataKey="date" minTickGap={30} axisLine={false}/>
                         <Recharts.YAxis orientation="right" axisLine={false} mirror={true}/>
-                        <Recharts.Legend/>
+                        {true ||<Recharts.Legend/>}
                         <Recharts.Tooltip animationDuration={100}/>
                         {Object.keys(this.props.graph.data[0]).filter((key) => key !== "date").map((key) => (
                             <Recharts.Line dataKey={key} stroke="#3d2fae" dot={false} type="monotone"/>
