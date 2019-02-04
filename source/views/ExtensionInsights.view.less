@@ -1,6 +1,6 @@
 @import "./Styles.view.less";
 
-.ExtensionInsight {
+.ExtensionInsights {
     menu {
         background-color: @black;
     }
@@ -71,7 +71,7 @@
         border-style: solid;
         border-image-slice: 1;
         border-width: @border-width;
-        border-color: @border-color;
+        border-color: @purple;
         border-image-source: @vertical-gradient;
 
         background-color: @purple;
@@ -125,7 +125,8 @@
 
                 .Label {
                     word-break: break-word;
-                    font-size: 0.7em;
+                    font-size: @small-text;
+                    text-transform: lowercase;
                 }
             }
         }
@@ -143,14 +144,14 @@
             border-width: 1px;
             border-style: solid;
             border-radius: @roundness;
-            border-color: @border-color;
+            border-color: @purple;
 
-            color: @border-color;
+            color: @purple;
             text-decoration: none;
 
             &:hover {
                 color: @white;
-                background-color: @border-color;
+                background-color: @purple;
             }
         }
     }

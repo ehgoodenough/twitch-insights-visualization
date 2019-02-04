@@ -3,32 +3,18 @@ import * as Recharts from "recharts"
 // TODO: Consider precharts vs recharts
 // TODO: Consider babel-plugin-recharts
 
-import "views/ExtensionInsight.view.less"
-// Colors were generated and selected from:
-// https://www.colorhexa.com/3d2fae-to-b769d1
+import "views/ExtensionInsights.view.less"
 
-function toPercentage(value) {
-    return Math.round(value * 100) + "%"
-}
-
-function toCount(value) {
-    if(value < 1000) {
-        return value
-    }
-
-    return Math.round(value / 1000) + "k"
-}
-
-export default class ExtensionInsight {
+export default class ExtensionInsights {
     render() {
         return (
-            <div class="ExtensionInsight">
+            <div class="ExtensionInsights">
                 <title>
                     {this.props.insight["Extension Name"]} -
                     Twitch Insights Visualization
                 </title>
                 <header>
-                    <div class="Context">
+                    <div class="Brand">
                         Twitch Extension Insights
                     </div>
                     <div class="Name">
@@ -264,3 +250,18 @@ class FunnelEvent {
         return this.props.event.label
     }
 }
+
+function toPercentage(value) {
+    return Math.round(value * 100) + "%"
+}
+
+function toCount(value) {
+    if(value < 1000) {
+        return value
+    }
+
+    return Math.round(value / 1000) + "k"
+}
+
+// Colors were generated and selected from:
+// https://www.colorhexa.com/3d2fae-to-b769d1
