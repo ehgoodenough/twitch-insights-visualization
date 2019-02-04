@@ -33,7 +33,7 @@ export default class Mount {
         }
         if(collections[0].type === "Extension") {
             return (
-                <ExtensionInsight insight={collections[0].insights[0]}/>
+                <ExtensionInsight insight={collections[0].insights[0]} collection={collections[0]}/>
             )
         }
         return (

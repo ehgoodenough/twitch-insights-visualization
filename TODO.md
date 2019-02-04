@@ -1,16 +1,3 @@
-GRAPH
-Unique Active Channels / Time
-
-GRAPH
-Mouseenter Rate / Time
-Interactor Rate / Time
-
-GRAPH
-Minimization Rate
-Unminimization Rate
-
-
-
 File Handling
 - Pretty up the view.
 - Add a file picker form instead of just drag-and-drop.

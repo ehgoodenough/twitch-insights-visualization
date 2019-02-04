@@ -31,6 +31,7 @@
         max-width: @max-point;
 
         display: grid;
+        grid-template-columns: 1fr;
         grid-gap: @big-gutter;
         padding: @big-gutter;
     }
@@ -74,13 +75,17 @@
         }
     }
 
+    .Graph.Visualization {
+        height: 20em;
+    }
+
     section.Visualizations {
         grid-template-columns: 1fr 1fr;
         @media(max-width: @break-point) {
             grid-template-columns: 1fr;
         }
 
-        .Funnel {
+        .Funnel.Visualization {
             .Title {
                 margin-bottom: @gutter;
             }

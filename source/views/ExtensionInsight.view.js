@@ -1,7 +1,9 @@
 import Preact from "preact"
+import * as Recharts from "recharts"
+// TODO: Consider precharts vs recharts
+// TODO: Consider babel-plugin-recharts
 
 import "views/ExtensionInsight.view.less"
-
 // Colors were generated and selected from:
 // https://www.colorhexa.com/3d2fae-to-b769d1
 
@@ -52,8 +54,10 @@ export default class ExtensionInsight {
                         "value": toPercentage(this.props.insight["Interaction Rate"]),
                     }}/>
                 </section>
-                <section class="Visualizations">
+                <section class="Graphs">
                     <Graph graph={this.channelGraph}/>
+                </section>
+                <section class="Visualizations">
                     <Funnel funnel={this.viewerCountFunnel}/>
                     <Funnel funnel={this.streamerActionFunnel}/>
                     <Funnel funnel={this.viewerActionFunnel}/>
@@ -69,9 +73,29 @@ export default class ExtensionInsight {
     get url() {
         return "https://www.twitch.tv/ext/" + this.props.insight["Extension Client ID"]
     }
+    // get viewerGraph() {
+    //     return {
+    //         "title": "Unique Active Channels Over Time",
+    //         "data": this.props.collection.insights.slice(0, 30).map((insight, index) => {
+    //             return {
+    //                 "date": insight["Date"],
+    //                 "click-rate": insight["Interaction Rate"],
+    //                 "hover-rate": insight["Mouseenter Rate"],
+    //             }
+    //         }).reverse()
+    //     }
+    // }
     get channelGraph() {
         return {
-            //
+            "title": "Unique Active Channels Over Time",
+            "data": this.props.collection.insights.slice(0, 1000).filter((insight) => {
+                return insight["Unique Active Channels"] > 0
+            }).map((insight) => {
+                return {
+                    "date": insight["Date"],
+                    "unique-active-channels": insight["Unique Active Channels"]
+                }
+            }).reverse()
         }
     }
     get viewerActionFunnel() {
@@ -168,6 +192,19 @@ class Graph {
     render() {
         return (
             <div class="Graph Visualization">
+                <div class="Title">{this.props.graph.title}</div>
+                <Recharts.ResponsiveContainer width="99%" height="99%">
+                    <Recharts.LineChart data={this.props.graph.data}>
+                        <Recharts.CartesianGrid stroke="#CCC"/>
+                        <Recharts.XAxis dataKey="date" hide={true}/>
+                        <Recharts.YAxis orientation="right" axisLine={false} mirror={true}/>
+                        <Recharts.Legend/>
+                        <Recharts.Tooltip animationDuration={100}/>
+                        {Object.keys(this.props.graph.data[0]).filter((key) => key !== "date").map((key) => (
+                            <Recharts.Line dataKey={key} stroke="#3d2fae" dot={false} type="monotone"/>
+                        ))}
+                    </Recharts.LineChart>
+                </Recharts.ResponsiveContainer>
             </div>
         )
     }
