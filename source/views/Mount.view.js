@@ -7,12 +7,12 @@ import "views/Mount.view.less"
 import ExtensionInsight from "views/ExtensionInsight.view.js"
 
 let collections = [
-    // {
-    //     "type": "Extension",
-    //     "insights": csvparse(window.localStorage.getItem("insight"), {
-    //         "cast": true, "columns": true
-    //     })
-    // }
+    {
+        "type": "Extension",
+        "insights": csvparse(window.localStorage.getItem("insight"), {
+            "cast": true, "columns": true
+        })
+    }
 ]
 
 export default class Mount {

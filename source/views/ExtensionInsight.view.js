@@ -41,9 +41,7 @@ export default class ExtensionInsight {
                         "label": "Unique Active Channels",
                         "value": toCount(this.props.insight["Unique Active Channels Last 30 Days"]),
                     }}/>
-                    <Box box={{
-                        "label": "Unique Viewers",
-                        "value": toCount(this.props.insight["Unique Viewers Last 30 Days"]),
+                    <Box box={{"label": "Unique Viewers", "value": toCount(this.props.insight["Unique Viewers Last 30 Days"]),
                     }}/>
                     <Box box={{
                         "label": "Unique Interactors",
@@ -55,9 +53,10 @@ export default class ExtensionInsight {
                     }}/>
                 </section>
                 <section class="Visualizations">
+                    <Graph graph={this.channelGraph}/>
+                    <Funnel funnel={this.viewerCountFunnel}/>
                     <Funnel funnel={this.streamerActionFunnel}/>
                     <Funnel funnel={this.viewerActionFunnel}/>
-                    <Funnel funnel={this.viewerCountFunnel}/>
                 </section>
                 <footer>
                     <a class="Link" href={this.url} target="_blank">
@@ -69,6 +68,11 @@ export default class ExtensionInsight {
     }
     get url() {
         return "https://www.twitch.tv/ext/" + this.props.insight["Extension Client ID"]
+    }
+    get channelGraph() {
+        return {
+            //
+        }
     }
     get viewerActionFunnel() {
         return {
@@ -155,6 +159,15 @@ class Box {
             <div class="Box">
                 <div class="Value">{this.props.box.value}</div>
                 <div class="Label">{this.props.box.label}</div>
+            </div>
+        )
+    }
+}
+
+class Graph {
+    render() {
+        return (
+            <div class="Graph Visualization">
             </div>
         )
     }

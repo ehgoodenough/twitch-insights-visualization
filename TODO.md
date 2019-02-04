@@ -9,14 +9,12 @@ GRAPH
 Minimization Rate
 Unminimization Rate
 
-ANOTHER BIG NUMBER BOX?
-Unique Extension Details Page Visits
-
 
 
 File Handling
+- Pretty up the view.
 - Add a file picker form instead of just drag-and-drop.
-- Set the page title during all the pre-visualization screens (instead of just localhost)
+- Set the page title during all the pre-visualization screens (instead of just localhost).
 
 Dates:
 - Add controls for setting the date to a specific day.
