@@ -1,16 +1,15 @@
 import Preact from "preact"
-import csvparse from "csv-parse/lib/sync"
 import dragdrop from "drag-drop/buffer"
 
 import view from "views/.js"
+import "views/Mount.view.less"
 
 import ExtensionInsights from "views/ExtensionInsights.view.js"
 // import GameInsights from "views/GameInsights.view.js"
 
-import "views/Mount.view.less"
+import Collection from "models/Collection.js"
 
-const CSV_PARSE_OPTIONS = {"cast": true, "columns": true}
-const EXAMPLE_CSV = `Date,Extension Name,Extension Client ID,Extension Details Page Visits,Unique Extension Details Page Visits,Installs,Uninstalls,Activations,Unique Active Channels,Unique Active Channels Last 7 Days,Unique Active Channels Last 30 Days,Unique Identity Links,Unique Identity Unlinks,Renders,Unique Renderers,Unique Renderers Last 7 Days,Unique Renderers Last 30 Days,Views,Unique Viewers,Unique Viewers Last 7 Days,Unique Viewers Last 30 Days,Mouseenters,Unique Mouseenters,Unique Mouseenters Last 7 Days,Unique Mouseenters Last 30 Days,Mouseenters Per Viewer,Mouseenter Rate,Clicks,Unique Interactors,Unique Interactors Last 7 Days,Unique Interactors Last 30 Days,Clicks Per Interactor,Interaction Rate,Minimizations,Unique Minimizers,Minimization Rate,Unminimizations,Unique Unminimizers,Unminimization Rate,Bits Revenue USD,Bits Used,Bits Transactions,Bits Per Transaction,Unique Bits Users,Unique Bits Users Last 7 Days,Unique Bits Users Last 30 Days,Bits Used Per User
+const EXAMPLE_INSIGHTS = `Date,Extension Name,Extension Client ID,Extension Details Page Visits,Unique Extension Details Page Visits,Installs,Uninstalls,Activations,Unique Active Channels,Unique Active Channels Last 7 Days,Unique Active Channels Last 30 Days,Unique Identity Links,Unique Identity Unlinks,Renders,Unique Renderers,Unique Renderers Last 7 Days,Unique Renderers Last 30 Days,Views,Unique Viewers,Unique Viewers Last 7 Days,Unique Viewers Last 30 Days,Mouseenters,Unique Mouseenters,Unique Mouseenters Last 7 Days,Unique Mouseenters Last 30 Days,Mouseenters Per Viewer,Mouseenter Rate,Clicks,Unique Interactors,Unique Interactors Last 7 Days,Unique Interactors Last 30 Days,Clicks Per Interactor,Interaction Rate,Minimizations,Unique Minimizers,Minimization Rate,Unminimizations,Unique Unminimizers,Unminimization Rate,Bits Revenue USD,Bits Used,Bits Transactions,Bits Per Transaction,Unique Bits Users,Unique Bits Users Last 7 Days,Unique Bits Users Last 30 Days,Bits Used Per User
 5/31/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz51,42,13,18,5,9,164,462,756,51,8,23954,13084,80730,168982,23954,13084,80730,168982,51796,7564,40166,79960,3.9587,0.5781,6512,1365,6848,15464,4.7707,0.1043,410,369,0.0282,12,10,0.0009,1.08,540,32,16.875,30,132,417,18
 6/1/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz52,30,11,14,5,5,124,434,714,37,5,17286,9308,79066,163978,17286,9308,79066,163978,40010,5462,39166,77026,4.2985,0.5868,4412,1182,6926,14972,3.7327,0.127,292,273,0.0293,10,8,0.0011,0.87,435,38,11.4474,15,117,402,29
 6/2/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz53,21,8,14,5,5,128,440,694,15,2,7930,5220,84282,163124,7930,5220,84282,163124,10516,2208,42176,75940,2.0146,0.423,1700,411,7636,14716,4.1363,0.0787,60,51,0.0098,4,4,0.0008,0.06,30,4,7.5,6,117,396,5
@@ -23,11 +22,10 @@ const EXAMPLE_CSV = `Date,Extension Name,Extension Client ID,Extension Details P
 6/9/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz60,24,8,12,3,7,134,324,538,41,6.5,30622,17092,56124,129834,30622,17092,56124,129834,63590,9626,29608,56998,3.7205,0.5632,11176,2493,6692,10768,4.483,0.1459,726,624,0.0365,16,14,0.0009,1.89,945,14,67.5,15,141,429,63`
 
 let collections = [
-    {
-        "type": "Extension",
-        "insights": csvparse(EXAMPLE_CSV, CSV_PARSE_OPTIONS),
+    new Collection({
+        "insights": EXAMPLE_INSIGHTS,
         "isExample": true,
-    }
+    })
 ]
 
 export default class Mount {
@@ -57,29 +55,11 @@ export default class Mount {
     componentDidMount() {
         dragdrop("#mount", (files) => {
             files.forEach((file) => {
-                // Create a new insight object.
-                let collection = {
+                collections.unshift(new Collection({
                     "filename": file.name,
                     "filesize": file.size,
-                }
-
-                // Attempt to parse the insights data.
-                try {
-                    collection.insights = file.toString("utf8")
-                    collection.insights = csvparse(collection.insights, CSV_PARSE_OPTIONS)
-                } catch(error) {
-                    console.error(`Could not parse "${file.name}"`)
-                    console.error(error)
-                    return
-                }
-
-                // Recognize the insights type.
-                if(!!collection.insights[0]["Extension Name"]) {
-                    collection.type = "Extension"
-                }
-
-                // Add the insights to the store.
-                collections.unshift(collection)
+                    "insights": file
+                }))
                 view.render()
             })
         })
