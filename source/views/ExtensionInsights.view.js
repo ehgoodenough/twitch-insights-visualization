@@ -1,3 +1,4 @@
+const numeral = require("numeral");
 import Preact from "preact"
 import * as Recharts from "recharts"
 // TODO: Consider precharts vs recharts
@@ -257,10 +258,11 @@ function toPercentage(value) {
 
 function toCount(value) {
     if(value < 1000) {
-        return value
+        return String(value)
+    } else {
+        // value like "1.00k, 3.29m, 5.67b"
+        return numeral(value).format("0.00a")
     }
-
-    return Math.round(value / 1000) + "k"
 }
 
 // Colors were generated and selected from:

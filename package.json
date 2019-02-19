@@ -19,6 +19,7 @@
     "drag-drop": "^4.2.0",
     "preact": "^8.2.7",
     "preact-compat": "^3.18.4",
+    "numeral": "^2.0.6",
     "recharts": "^1.4.2",
     "statgrab": "^1.2.0",
     "yaafloop": "^1.1.0"
