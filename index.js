@@ -2414,7 +2414,7 @@ var urlEscape = __webpack_require__(/*! ../../node_modules/css-loader/dist/runti
 var ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(/*! ../fonts/open-sans.ttf */ "./source/fonts/open-sans.ttf"));
 
 // Module
-exports.push([module.i, "@font-face {\n  font-weight: 400;\n  font-family: \"open-sans\";\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"truetype\");\n}\n* {\n  margin: 0px;\n  padding: 0px;\n  user-select: none;\n  box-sizing: border-box;\n}\n#mount {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  overflow-y: auto;\n  color: #191923;\n  text-align: center;\n  font-family: open-sans;\n  background-color: #FBFEF9;\n}\n#mount .DragZone {\n  opacity: 0;\n  transition-duration: 0.25s;\n  transition-property: opacity;\n  pointer-events: none;\n  top: 0px;\n  left: 0px;\n  right: 0px;\n  bottom: 0px;\n  margin: auto;\n  z-index: 999999;\n  overflow: hidden;\n  position: absolute;\n  max-width: 1200px;\n  border-width: 8px;\n  border-style: dashed;\n  border-color: #392e5c;\n}\n#mount .DragZone .Prompt {\n  position: absolute;\n  left: -3em;\n  right: -3em;\n  padding: 0.61804697em 4em;\n  font-size: 3em;\n  color: #FBFEF9;\n  background-color: rgba(25, 25, 35, 0.75);\n  transform-origin: 50% 50%;\n  transform: translateY(40vh) rotate(12.5deg);\n}\n@media (max-width: 800px) {\n  #mount .DragZone .Prompt {\n    font-size: 2em;\n  }\n}\n#mount .DragZone.isExample {\n  animation-fill-mode: forwards;\n  animation-name: fade-in;\n  animation-duration: 1s;\n  animation-delay: 1s;\n}\n#mount.drag .DragZone {\n  opacity: 1;\n  transition-duration: 0.5s;\n}\n@keyframes fade-in {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n", ""]);
+exports.push([module.i, "@font-face {\n  font-weight: 400;\n  font-family: \"open-sans\";\n  src: url(" + ___CSS_LOADER_URL___0___ + ") format(\"truetype\");\n}\n* {\n  margin: 0px;\n  padding: 0px;\n  user-select: none;\n  box-sizing: border-box;\n}\n#mount {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  overflow-y: auto;\n  color: #191923;\n  text-align: center;\n  font-family: open-sans;\n  background-color: #FBFEF9;\n}\n#mount .DragZone {\n  opacity: 0;\n  transition-duration: 0.25s;\n  transition-property: opacity;\n  pointer-events: none;\n  top: 0px;\n  left: 0px;\n  right: 0px;\n  bottom: 0px;\n  margin: auto;\n  z-index: 999999;\n  overflow: hidden;\n  position: absolute;\n  max-width: 1200px;\n  border-width: 8px;\n  border-style: dashed;\n  border-color: #392e5c;\n}\n#mount .DragZone .Prompt {\n  position: absolute;\n  left: -3em;\n  right: -3em;\n  padding: 0.61804697em 4em;\n  font-size: 3em;\n  color: #FBFEF9;\n  background-color: rgba(25, 25, 35, 0.75);\n  transform-origin: 50% 50%;\n  transform: translateY(40vh) rotate(12.5deg);\n}\n@media (max-width: 800px) {\n  #mount .DragZone .Prompt {\n    font-size: 2em;\n  }\n}\n@keyframes fade-in {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n", ""]);
 
 
 
@@ -28371,6 +28371,1030 @@ var toString = {}.toString;
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/numeral/numeral.js":
+/*!*****************************************!*\
+  !*** ./node_modules/numeral/numeral.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! @preserve
+ * numeral.js
+ * version : 2.0.6
+ * author : Adam Draper
+ * license : MIT
+ * http://adamwdraper.github.com/Numeral-js/
+ */
+
+(function (global, factory) {
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+}(this, function () {
+    /************************************
+        Variables
+    ************************************/
+
+    var numeral,
+        _,
+        VERSION = '2.0.6',
+        formats = {},
+        locales = {},
+        defaults = {
+            currentLocale: 'en',
+            zeroFormat: null,
+            nullFormat: null,
+            defaultFormat: '0,0',
+            scalePercentBy100: true
+        },
+        options = {
+            currentLocale: defaults.currentLocale,
+            zeroFormat: defaults.zeroFormat,
+            nullFormat: defaults.nullFormat,
+            defaultFormat: defaults.defaultFormat,
+            scalePercentBy100: defaults.scalePercentBy100
+        };
+
+
+    /************************************
+        Constructors
+    ************************************/
+
+    // Numeral prototype object
+    function Numeral(input, number) {
+        this._input = input;
+
+        this._value = number;
+    }
+
+    numeral = function(input) {
+        var value,
+            kind,
+            unformatFunction,
+            regexp;
+
+        if (numeral.isNumeral(input)) {
+            value = input.value();
+        } else if (input === 0 || typeof input === 'undefined') {
+            value = 0;
+        } else if (input === null || _.isNaN(input)) {
+            value = null;
+        } else if (typeof input === 'string') {
+            if (options.zeroFormat && input === options.zeroFormat) {
+                value = 0;
+            } else if (options.nullFormat && input === options.nullFormat || !input.replace(/[^0-9]+/g, '').length) {
+                value = null;
+            } else {
+                for (kind in formats) {
+                    regexp = typeof formats[kind].regexps.unformat === 'function' ? formats[kind].regexps.unformat() : formats[kind].regexps.unformat;
+
+                    if (regexp && input.match(regexp)) {
+                        unformatFunction = formats[kind].unformat;
+
+                        break;
+                    }
+                }
+
+                unformatFunction = unformatFunction || numeral._.stringToNumber;
+
+                value = unformatFunction(input);
+            }
+        } else {
+            value = Number(input)|| null;
+        }
+
+        return new Numeral(input, value);
+    };
+
+    // version number
+    numeral.version = VERSION;
+
+    // compare numeral object
+    numeral.isNumeral = function(obj) {
+        return obj instanceof Numeral;
+    };
+
+    // helper functions
+    numeral._ = _ = {
+        // formats numbers separators, decimals places, signs, abbreviations
+        numberToFormat: function(value, format, roundingFunction) {
+            var locale = locales[numeral.options.currentLocale],
+                negP = false,
+                optDec = false,
+                leadingCount = 0,
+                abbr = '',
+                trillion = 1000000000000,
+                billion = 1000000000,
+                million = 1000000,
+                thousand = 1000,
+                decimal = '',
+                neg = false,
+                abbrForce, // force abbreviation
+                abs,
+                min,
+                max,
+                power,
+                int,
+                precision,
+                signed,
+                thousands,
+                output;
+
+            // make sure we never format a null value
+            value = value || 0;
+
+            abs = Math.abs(value);
+
+            // see if we should use parentheses for negative number or if we should prefix with a sign
+            // if both are present we default to parentheses
+            if (numeral._.includes(format, '(')) {
+                negP = true;
+                format = format.replace(/[\(|\)]/g, '');
+            } else if (numeral._.includes(format, '+') || numeral._.includes(format, '-')) {
+                signed = numeral._.includes(format, '+') ? format.indexOf('+') : value < 0 ? format.indexOf('-') : -1;
+                format = format.replace(/[\+|\-]/g, '');
+            }
+
+            // see if abbreviation is wanted
+            if (numeral._.includes(format, 'a')) {
+                abbrForce = format.match(/a(k|m|b|t)?/);
+
+                abbrForce = abbrForce ? abbrForce[1] : false;
+
+                // check for space before abbreviation
+                if (numeral._.includes(format, ' a')) {
+                    abbr = ' ';
+                }
+
+                format = format.replace(new RegExp(abbr + 'a[kmbt]?'), '');
+
+                if (abs >= trillion && !abbrForce || abbrForce === 't') {
+                    // trillion
+                    abbr += locale.abbreviations.trillion;
+                    value = value / trillion;
+                } else if (abs < trillion && abs >= billion && !abbrForce || abbrForce === 'b') {
+                    // billion
+                    abbr += locale.abbreviations.billion;
+                    value = value / billion;
+                } else if (abs < billion && abs >= million && !abbrForce || abbrForce === 'm') {
+                    // million
+                    abbr += locale.abbreviations.million;
+                    value = value / million;
+                } else if (abs < million && abs >= thousand && !abbrForce || abbrForce === 'k') {
+                    // thousand
+                    abbr += locale.abbreviations.thousand;
+                    value = value / thousand;
+                }
+            }
+
+            // check for optional decimals
+            if (numeral._.includes(format, '[.]')) {
+                optDec = true;
+                format = format.replace('[.]', '.');
+            }
+
+            // break number and format
+            int = value.toString().split('.')[0];
+            precision = format.split('.')[1];
+            thousands = format.indexOf(',');
+            leadingCount = (format.split('.')[0].split(',')[0].match(/0/g) || []).length;
+
+            if (precision) {
+                if (numeral._.includes(precision, '[')) {
+                    precision = precision.replace(']', '');
+                    precision = precision.split('[');
+                    decimal = numeral._.toFixed(value, (precision[0].length + precision[1].length), roundingFunction, precision[1].length);
+                } else {
+                    decimal = numeral._.toFixed(value, precision.length, roundingFunction);
+                }
+
+                int = decimal.split('.')[0];
+
+                if (numeral._.includes(decimal, '.')) {
+                    decimal = locale.delimiters.decimal + decimal.split('.')[1];
+                } else {
+                    decimal = '';
+                }
+
+                if (optDec && Number(decimal.slice(1)) === 0) {
+                    decimal = '';
+                }
+            } else {
+                int = numeral._.toFixed(value, 0, roundingFunction);
+            }
+
+            // check abbreviation again after rounding
+            if (abbr && !abbrForce && Number(int) >= 1000 && abbr !== locale.abbreviations.trillion) {
+                int = String(Number(int) / 1000);
+
+                switch (abbr) {
+                    case locale.abbreviations.thousand:
+                        abbr = locale.abbreviations.million;
+                        break;
+                    case locale.abbreviations.million:
+                        abbr = locale.abbreviations.billion;
+                        break;
+                    case locale.abbreviations.billion:
+                        abbr = locale.abbreviations.trillion;
+                        break;
+                }
+            }
+
+
+            // format number
+            if (numeral._.includes(int, '-')) {
+                int = int.slice(1);
+                neg = true;
+            }
+
+            if (int.length < leadingCount) {
+                for (var i = leadingCount - int.length; i > 0; i--) {
+                    int = '0' + int;
+                }
+            }
+
+            if (thousands > -1) {
+                int = int.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' + locale.delimiters.thousands);
+            }
+
+            if (format.indexOf('.') === 0) {
+                int = '';
+            }
+
+            output = int + decimal + (abbr ? abbr : '');
+
+            if (negP) {
+                output = (negP && neg ? '(' : '') + output + (negP && neg ? ')' : '');
+            } else {
+                if (signed >= 0) {
+                    output = signed === 0 ? (neg ? '-' : '+') + output : output + (neg ? '-' : '+');
+                } else if (neg) {
+                    output = '-' + output;
+                }
+            }
+
+            return output;
+        },
+        // unformats numbers separators, decimals places, signs, abbreviations
+        stringToNumber: function(string) {
+            var locale = locales[options.currentLocale],
+                stringOriginal = string,
+                abbreviations = {
+                    thousand: 3,
+                    million: 6,
+                    billion: 9,
+                    trillion: 12
+                },
+                abbreviation,
+                value,
+                i,
+                regexp;
+
+            if (options.zeroFormat && string === options.zeroFormat) {
+                value = 0;
+            } else if (options.nullFormat && string === options.nullFormat || !string.replace(/[^0-9]+/g, '').length) {
+                value = null;
+            } else {
+                value = 1;
+
+                if (locale.delimiters.decimal !== '.') {
+                    string = string.replace(/\./g, '').replace(locale.delimiters.decimal, '.');
+                }
+
+                for (abbreviation in abbreviations) {
+                    regexp = new RegExp('[^a-zA-Z]' + locale.abbreviations[abbreviation] + '(?:\\)|(\\' + locale.currency.symbol + ')?(?:\\))?)?$');
+
+                    if (stringOriginal.match(regexp)) {
+                        value *= Math.pow(10, abbreviations[abbreviation]);
+                        break;
+                    }
+                }
+
+                // check for negative number
+                value *= (string.split('-').length + Math.min(string.split('(').length - 1, string.split(')').length - 1)) % 2 ? 1 : -1;
+
+                // remove non numbers
+                string = string.replace(/[^0-9\.]+/g, '');
+
+                value *= Number(string);
+            }
+
+            return value;
+        },
+        isNaN: function(value) {
+            return typeof value === 'number' && isNaN(value);
+        },
+        includes: function(string, search) {
+            return string.indexOf(search) !== -1;
+        },
+        insert: function(string, subString, start) {
+            return string.slice(0, start) + subString + string.slice(start);
+        },
+        reduce: function(array, callback /*, initialValue*/) {
+            if (this === null) {
+                throw new TypeError('Array.prototype.reduce called on null or undefined');
+            }
+
+            if (typeof callback !== 'function') {
+                throw new TypeError(callback + ' is not a function');
+            }
+
+            var t = Object(array),
+                len = t.length >>> 0,
+                k = 0,
+                value;
+
+            if (arguments.length === 3) {
+                value = arguments[2];
+            } else {
+                while (k < len && !(k in t)) {
+                    k++;
+                }
+
+                if (k >= len) {
+                    throw new TypeError('Reduce of empty array with no initial value');
+                }
+
+                value = t[k++];
+            }
+            for (; k < len; k++) {
+                if (k in t) {
+                    value = callback(value, t[k], k, t);
+                }
+            }
+            return value;
+        },
+        /**
+         * Computes the multiplier necessary to make x >= 1,
+         * effectively eliminating miscalculations caused by
+         * finite precision.
+         */
+        multiplier: function (x) {
+            var parts = x.toString().split('.');
+
+            return parts.length < 2 ? 1 : Math.pow(10, parts[1].length);
+        },
+        /**
+         * Given a variable number of arguments, returns the maximum
+         * multiplier that must be used to normalize an operation involving
+         * all of them.
+         */
+        correctionFactor: function () {
+            var args = Array.prototype.slice.call(arguments);
+
+            return args.reduce(function(accum, next) {
+                var mn = _.multiplier(next);
+                return accum > mn ? accum : mn;
+            }, 1);
+        },
+        /**
+         * Implementation of toFixed() that treats floats more like decimals
+         *
+         * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present
+         * problems for accounting- and finance-related software.
+         */
+        toFixed: function(value, maxDecimals, roundingFunction, optionals) {
+            var splitValue = value.toString().split('.'),
+                minDecimals = maxDecimals - (optionals || 0),
+                boundedPrecision,
+                optionalsRegExp,
+                power,
+                output;
+
+            // Use the smallest precision value possible to avoid errors from floating point representation
+            if (splitValue.length === 2) {
+              boundedPrecision = Math.min(Math.max(splitValue[1].length, minDecimals), maxDecimals);
+            } else {
+              boundedPrecision = minDecimals;
+            }
+
+            power = Math.pow(10, boundedPrecision);
+
+            // Multiply up by precision, round accurately, then divide and use native toFixed():
+            output = (roundingFunction(value + 'e+' + boundedPrecision) / power).toFixed(boundedPrecision);
+
+            if (optionals > maxDecimals - boundedPrecision) {
+                optionalsRegExp = new RegExp('\\.?0{1,' + (optionals - (maxDecimals - boundedPrecision)) + '}$');
+                output = output.replace(optionalsRegExp, '');
+            }
+
+            return output;
+        }
+    };
+
+    // avaliable options
+    numeral.options = options;
+
+    // avaliable formats
+    numeral.formats = formats;
+
+    // avaliable formats
+    numeral.locales = locales;
+
+    // This function sets the current locale.  If
+    // no arguments are passed in, it will simply return the current global
+    // locale key.
+    numeral.locale = function(key) {
+        if (key) {
+            options.currentLocale = key.toLowerCase();
+        }
+
+        return options.currentLocale;
+    };
+
+    // This function provides access to the loaded locale data.  If
+    // no arguments are passed in, it will simply return the current
+    // global locale object.
+    numeral.localeData = function(key) {
+        if (!key) {
+            return locales[options.currentLocale];
+        }
+
+        key = key.toLowerCase();
+
+        if (!locales[key]) {
+            throw new Error('Unknown locale : ' + key);
+        }
+
+        return locales[key];
+    };
+
+    numeral.reset = function() {
+        for (var property in defaults) {
+            options[property] = defaults[property];
+        }
+    };
+
+    numeral.zeroFormat = function(format) {
+        options.zeroFormat = typeof(format) === 'string' ? format : null;
+    };
+
+    numeral.nullFormat = function (format) {
+        options.nullFormat = typeof(format) === 'string' ? format : null;
+    };
+
+    numeral.defaultFormat = function(format) {
+        options.defaultFormat = typeof(format) === 'string' ? format : '0.0';
+    };
+
+    numeral.register = function(type, name, format) {
+        name = name.toLowerCase();
+
+        if (this[type + 's'][name]) {
+            throw new TypeError(name + ' ' + type + ' already registered.');
+        }
+
+        this[type + 's'][name] = format;
+
+        return format;
+    };
+
+
+    numeral.validate = function(val, culture) {
+        var _decimalSep,
+            _thousandSep,
+            _currSymbol,
+            _valArray,
+            _abbrObj,
+            _thousandRegEx,
+            localeData,
+            temp;
+
+        //coerce val to string
+        if (typeof val !== 'string') {
+            val += '';
+
+            if (console.warn) {
+                console.warn('Numeral.js: Value is not string. It has been co-erced to: ', val);
+            }
+        }
+
+        //trim whitespaces from either sides
+        val = val.trim();
+
+        //if val is just digits return true
+        if (!!val.match(/^\d+$/)) {
+            return true;
+        }
+
+        //if val is empty return false
+        if (val === '') {
+            return false;
+        }
+
+        //get the decimal and thousands separator from numeral.localeData
+        try {
+            //check if the culture is understood by numeral. if not, default it to current locale
+            localeData = numeral.localeData(culture);
+        } catch (e) {
+            localeData = numeral.localeData(numeral.locale());
+        }
+
+        //setup the delimiters and currency symbol based on culture/locale
+        _currSymbol = localeData.currency.symbol;
+        _abbrObj = localeData.abbreviations;
+        _decimalSep = localeData.delimiters.decimal;
+        if (localeData.delimiters.thousands === '.') {
+            _thousandSep = '\\.';
+        } else {
+            _thousandSep = localeData.delimiters.thousands;
+        }
+
+        // validating currency symbol
+        temp = val.match(/^[^\d]+/);
+        if (temp !== null) {
+            val = val.substr(1);
+            if (temp[0] !== _currSymbol) {
+                return false;
+            }
+        }
+
+        //validating abbreviation symbol
+        temp = val.match(/[^\d]+$/);
+        if (temp !== null) {
+            val = val.slice(0, -1);
+            if (temp[0] !== _abbrObj.thousand && temp[0] !== _abbrObj.million && temp[0] !== _abbrObj.billion && temp[0] !== _abbrObj.trillion) {
+                return false;
+            }
+        }
+
+        _thousandRegEx = new RegExp(_thousandSep + '{2}');
+
+        if (!val.match(/[^\d.,]/g)) {
+            _valArray = val.split(_decimalSep);
+            if (_valArray.length > 2) {
+                return false;
+            } else {
+                if (_valArray.length < 2) {
+                    return ( !! _valArray[0].match(/^\d+.*\d$/) && !_valArray[0].match(_thousandRegEx));
+                } else {
+                    if (_valArray[0].length === 1) {
+                        return ( !! _valArray[0].match(/^\d+$/) && !_valArray[0].match(_thousandRegEx) && !! _valArray[1].match(/^\d+$/));
+                    } else {
+                        return ( !! _valArray[0].match(/^\d+.*\d$/) && !_valArray[0].match(_thousandRegEx) && !! _valArray[1].match(/^\d+$/));
+                    }
+                }
+            }
+        }
+
+        return false;
+    };
+
+
+    /************************************
+        Numeral Prototype
+    ************************************/
+
+    numeral.fn = Numeral.prototype = {
+        clone: function() {
+            return numeral(this);
+        },
+        format: function(inputString, roundingFunction) {
+            var value = this._value,
+                format = inputString || options.defaultFormat,
+                kind,
+                output,
+                formatFunction;
+
+            // make sure we have a roundingFunction
+            roundingFunction = roundingFunction || Math.round;
+
+            // format based on value
+            if (value === 0 && options.zeroFormat !== null) {
+                output = options.zeroFormat;
+            } else if (value === null && options.nullFormat !== null) {
+                output = options.nullFormat;
+            } else {
+                for (kind in formats) {
+                    if (format.match(formats[kind].regexps.format)) {
+                        formatFunction = formats[kind].format;
+
+                        break;
+                    }
+                }
+
+                formatFunction = formatFunction || numeral._.numberToFormat;
+
+                output = formatFunction(value, format, roundingFunction);
+            }
+
+            return output;
+        },
+        value: function() {
+            return this._value;
+        },
+        input: function() {
+            return this._input;
+        },
+        set: function(value) {
+            this._value = Number(value);
+
+            return this;
+        },
+        add: function(value) {
+            var corrFactor = _.correctionFactor.call(null, this._value, value);
+
+            function cback(accum, curr, currI, O) {
+                return accum + Math.round(corrFactor * curr);
+            }
+
+            this._value = _.reduce([this._value, value], cback, 0) / corrFactor;
+
+            return this;
+        },
+        subtract: function(value) {
+            var corrFactor = _.correctionFactor.call(null, this._value, value);
+
+            function cback(accum, curr, currI, O) {
+                return accum - Math.round(corrFactor * curr);
+            }
+
+            this._value = _.reduce([value], cback, Math.round(this._value * corrFactor)) / corrFactor;
+
+            return this;
+        },
+        multiply: function(value) {
+            function cback(accum, curr, currI, O) {
+                var corrFactor = _.correctionFactor(accum, curr);
+                return Math.round(accum * corrFactor) * Math.round(curr * corrFactor) / Math.round(corrFactor * corrFactor);
+            }
+
+            this._value = _.reduce([this._value, value], cback, 1);
+
+            return this;
+        },
+        divide: function(value) {
+            function cback(accum, curr, currI, O) {
+                var corrFactor = _.correctionFactor(accum, curr);
+                return Math.round(accum * corrFactor) / Math.round(curr * corrFactor);
+            }
+
+            this._value = _.reduce([this._value, value], cback);
+
+            return this;
+        },
+        difference: function(value) {
+            return Math.abs(numeral(this._value).subtract(value).value());
+        }
+    };
+
+    /************************************
+        Default Locale && Format
+    ************************************/
+
+    numeral.register('locale', 'en', {
+        delimiters: {
+            thousands: ',',
+            decimal: '.'
+        },
+        abbreviations: {
+            thousand: 'k',
+            million: 'm',
+            billion: 'b',
+            trillion: 't'
+        },
+        ordinal: function(number) {
+            var b = number % 10;
+            return (~~(number % 100 / 10) === 1) ? 'th' :
+                (b === 1) ? 'st' :
+                (b === 2) ? 'nd' :
+                (b === 3) ? 'rd' : 'th';
+        },
+        currency: {
+            symbol: '$'
+        }
+    });
+
+    
+
+(function() {
+        numeral.register('format', 'bps', {
+            regexps: {
+                format: /(BPS)/,
+                unformat: /(BPS)/
+            },
+            format: function(value, format, roundingFunction) {
+                var space = numeral._.includes(format, ' BPS') ? ' ' : '',
+                    output;
+
+                value = value * 10000;
+
+                // check for space before BPS
+                format = format.replace(/\s?BPS/, '');
+
+                output = numeral._.numberToFormat(value, format, roundingFunction);
+
+                if (numeral._.includes(output, ')')) {
+                    output = output.split('');
+
+                    output.splice(-1, 0, space + 'BPS');
+
+                    output = output.join('');
+                } else {
+                    output = output + space + 'BPS';
+                }
+
+                return output;
+            },
+            unformat: function(string) {
+                return +(numeral._.stringToNumber(string) * 0.0001).toFixed(15);
+            }
+        });
+})();
+
+
+(function() {
+        var decimal = {
+            base: 1000,
+            suffixes: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+        },
+        binary = {
+            base: 1024,
+            suffixes: ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']
+        };
+
+    var allSuffixes =  decimal.suffixes.concat(binary.suffixes.filter(function (item) {
+            return decimal.suffixes.indexOf(item) < 0;
+        }));
+        var unformatRegex = allSuffixes.join('|');
+        // Allow support for BPS (http://www.investopedia.com/terms/b/basispoint.asp)
+        unformatRegex = '(' + unformatRegex.replace('B', 'B(?!PS)') + ')';
+
+    numeral.register('format', 'bytes', {
+        regexps: {
+            format: /([0\s]i?b)/,
+            unformat: new RegExp(unformatRegex)
+        },
+        format: function(value, format, roundingFunction) {
+            var output,
+                bytes = numeral._.includes(format, 'ib') ? binary : decimal,
+                suffix = numeral._.includes(format, ' b') || numeral._.includes(format, ' ib') ? ' ' : '',
+                power,
+                min,
+                max;
+
+            // check for space before
+            format = format.replace(/\s?i?b/, '');
+
+            for (power = 0; power <= bytes.suffixes.length; power++) {
+                min = Math.pow(bytes.base, power);
+                max = Math.pow(bytes.base, power + 1);
+
+                if (value === null || value === 0 || value >= min && value < max) {
+                    suffix += bytes.suffixes[power];
+
+                    if (min > 0) {
+                        value = value / min;
+                    }
+
+                    break;
+                }
+            }
+
+            output = numeral._.numberToFormat(value, format, roundingFunction);
+
+            return output + suffix;
+        },
+        unformat: function(string) {
+            var value = numeral._.stringToNumber(string),
+                power,
+                bytesMultiplier;
+
+            if (value) {
+                for (power = decimal.suffixes.length - 1; power >= 0; power--) {
+                    if (numeral._.includes(string, decimal.suffixes[power])) {
+                        bytesMultiplier = Math.pow(decimal.base, power);
+
+                        break;
+                    }
+
+                    if (numeral._.includes(string, binary.suffixes[power])) {
+                        bytesMultiplier = Math.pow(binary.base, power);
+
+                        break;
+                    }
+                }
+
+                value *= (bytesMultiplier || 1);
+            }
+
+            return value;
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'currency', {
+        regexps: {
+            format: /(\$)/
+        },
+        format: function(value, format, roundingFunction) {
+            var locale = numeral.locales[numeral.options.currentLocale],
+                symbols = {
+                    before: format.match(/^([\+|\-|\(|\s|\$]*)/)[0],
+                    after: format.match(/([\+|\-|\)|\s|\$]*)$/)[0]
+                },
+                output,
+                symbol,
+                i;
+
+            // strip format of spaces and $
+            format = format.replace(/\s?\$\s?/, '');
+
+            // format the number
+            output = numeral._.numberToFormat(value, format, roundingFunction);
+
+            // update the before and after based on value
+            if (value >= 0) {
+                symbols.before = symbols.before.replace(/[\-\(]/, '');
+                symbols.after = symbols.after.replace(/[\-\)]/, '');
+            } else if (value < 0 && (!numeral._.includes(symbols.before, '-') && !numeral._.includes(symbols.before, '('))) {
+                symbols.before = '-' + symbols.before;
+            }
+
+            // loop through each before symbol
+            for (i = 0; i < symbols.before.length; i++) {
+                symbol = symbols.before[i];
+
+                switch (symbol) {
+                    case '$':
+                        output = numeral._.insert(output, locale.currency.symbol, i);
+                        break;
+                    case ' ':
+                        output = numeral._.insert(output, ' ', i + locale.currency.symbol.length - 1);
+                        break;
+                }
+            }
+
+            // loop through each after symbol
+            for (i = symbols.after.length - 1; i >= 0; i--) {
+                symbol = symbols.after[i];
+
+                switch (symbol) {
+                    case '$':
+                        output = i === symbols.after.length - 1 ? output + locale.currency.symbol : numeral._.insert(output, locale.currency.symbol, -(symbols.after.length - (1 + i)));
+                        break;
+                    case ' ':
+                        output = i === symbols.after.length - 1 ? output + ' ' : numeral._.insert(output, ' ', -(symbols.after.length - (1 + i) + locale.currency.symbol.length - 1));
+                        break;
+                }
+            }
+
+
+            return output;
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'exponential', {
+        regexps: {
+            format: /(e\+|e-)/,
+            unformat: /(e\+|e-)/
+        },
+        format: function(value, format, roundingFunction) {
+            var output,
+                exponential = typeof value === 'number' && !numeral._.isNaN(value) ? value.toExponential() : '0e+0',
+                parts = exponential.split('e');
+
+            format = format.replace(/e[\+|\-]{1}0/, '');
+
+            output = numeral._.numberToFormat(Number(parts[0]), format, roundingFunction);
+
+            return output + 'e' + parts[1];
+        },
+        unformat: function(string) {
+            var parts = numeral._.includes(string, 'e+') ? string.split('e+') : string.split('e-'),
+                value = Number(parts[0]),
+                power = Number(parts[1]);
+
+            power = numeral._.includes(string, 'e-') ? power *= -1 : power;
+
+            function cback(accum, curr, currI, O) {
+                var corrFactor = numeral._.correctionFactor(accum, curr),
+                    num = (accum * corrFactor) * (curr * corrFactor) / (corrFactor * corrFactor);
+                return num;
+            }
+
+            return numeral._.reduce([value, Math.pow(10, power)], cback, 1);
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'ordinal', {
+        regexps: {
+            format: /(o)/
+        },
+        format: function(value, format, roundingFunction) {
+            var locale = numeral.locales[numeral.options.currentLocale],
+                output,
+                ordinal = numeral._.includes(format, ' o') ? ' ' : '';
+
+            // check for space before
+            format = format.replace(/\s?o/, '');
+
+            ordinal += locale.ordinal(value);
+
+            output = numeral._.numberToFormat(value, format, roundingFunction);
+
+            return output + ordinal;
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'percentage', {
+        regexps: {
+            format: /(%)/,
+            unformat: /(%)/
+        },
+        format: function(value, format, roundingFunction) {
+            var space = numeral._.includes(format, ' %') ? ' ' : '',
+                output;
+
+            if (numeral.options.scalePercentBy100) {
+                value = value * 100;
+            }
+
+            // check for space before %
+            format = format.replace(/\s?\%/, '');
+
+            output = numeral._.numberToFormat(value, format, roundingFunction);
+
+            if (numeral._.includes(output, ')')) {
+                output = output.split('');
+
+                output.splice(-1, 0, space + '%');
+
+                output = output.join('');
+            } else {
+                output = output + space + '%';
+            }
+
+            return output;
+        },
+        unformat: function(string) {
+            var number = numeral._.stringToNumber(string);
+            if (numeral.options.scalePercentBy100) {
+                return number * 0.01;
+            }
+            return number;
+        }
+    });
+})();
+
+
+(function() {
+        numeral.register('format', 'time', {
+        regexps: {
+            format: /(:)/,
+            unformat: /(:)/
+        },
+        format: function(value, format, roundingFunction) {
+            var hours = Math.floor(value / 60 / 60),
+                minutes = Math.floor((value - (hours * 60 * 60)) / 60),
+                seconds = Math.round(value - (hours * 60 * 60) - (minutes * 60));
+
+            return hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
+        },
+        unformat: function(string) {
+            var timeArray = string.split(':'),
+                seconds = 0;
+
+            // turn hours and minutes into seconds and add them all up
+            if (timeArray.length === 3) {
+                // hours
+                seconds = seconds + (Number(timeArray[0]) * 60 * 60);
+                // minutes
+                seconds = seconds + (Number(timeArray[1]) * 60);
+                // seconds
+                seconds = seconds + Number(timeArray[2]);
+            } else if (timeArray.length === 2) {
+                // minutes
+                seconds = seconds + (Number(timeArray[0]) * 60);
+                // seconds
+                seconds = seconds + Number(timeArray[1]);
+            }
+            return Number(seconds);
+        }
+    });
+})();
+
+return numeral;
+}));
 
 
 /***/ }),
@@ -58976,6 +60000,95 @@ views_js__WEBPACK_IMPORTED_MODULE_1__["default"].render();
 
 /***/ }),
 
+/***/ "./source/models/Collection.js":
+/*!*************************************!*\
+  !*** ./source/models/Collection.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Collection; });
+/* harmony import */ var csv_parse_lib_sync__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! csv-parse/lib/sync */ "./node_modules/csv-parse/lib/sync.js");
+/* harmony import */ var csv_parse_lib_sync__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(csv_parse_lib_sync__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Collection =
+/*#__PURE__*/
+function () {
+  function Collection(that) {
+    _classCallCheck(this, Collection);
+
+    this.filename = that.filename;
+    this.filesize = that.filesize;
+    this.insights = that.insights;
+
+    try {
+      this.insights = this.insights.toString("utf8");
+      this.insights = csv_parse_lib_sync__WEBPACK_IMPORTED_MODULE_0___default()(this.insights, {
+        "cast": true,
+        "columns": true
+      });
+    } catch (error) {
+      console.error("Could not parse file.");
+      console.error(error);
+      return;
+    }
+
+    if (!!this.insights[0]["Extension Name"]) {
+      this.type = "Extension";
+    }
+
+    this.aggregate("Extension Details Page Visits");
+    this.aggregate("Installs");
+    this.aggregate("Activations");
+    this.aggregate("Renders");
+    this.aggregate("Views");
+    this.aggregate("Mouseenters");
+    this.aggregate("Clicks");
+    this.normalize("Unique Renderers");
+    this.normalize("Unique Viewers");
+    this.normalize("Unique Mouseenters");
+    this.normalize("Unique Interactors");
+    this.isExample = that.isExample;
+  }
+
+  _createClass(Collection, [{
+    key: "normalize",
+    value: function normalize(key) {
+      this.insights[0][key + " Today"] = this.insights[0][key];
+    }
+  }, {
+    key: "aggregate",
+    value: function aggregate(key) {
+      this.insights[0][key + " Today"] = this.insights[0][key];
+      this.insights[0][key + " Last 7 Days"] = this.insights.slice(0, 7).map(function (a) {
+        return a[key];
+      }).reduce(function (a, b) {
+        return a + b;
+      });
+      this.insights[0][key + " Last 30 Days"] = this.insights.slice(0, 30).map(function (a) {
+        return a[key];
+      }).reduce(function (a, b) {
+        return a + b;
+      });
+    }
+  }]);
+
+  return Collection;
+}();
+
+
+
+/***/ }),
+
 /***/ "./source/views/.js":
 /*!**************************!*\
   !*** ./source/views/.js ***!
@@ -59012,8 +60125,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ExtensionInsights; });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.mjs");
 /* harmony import */ var recharts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! recharts */ "./node_modules/recharts/es6/index.js");
-/* harmony import */ var views_ExtensionInsights_view_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! views/ExtensionInsights.view.less */ "./source/views/ExtensionInsights.view.less");
-/* harmony import */ var views_ExtensionInsights_view_less__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(views_ExtensionInsights_view_less__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! numeral */ "./node_modules/numeral/numeral.js");
+/* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(numeral__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var views_ExtensionInsights_view_less__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! views/ExtensionInsights.view.less */ "./source/views/ExtensionInsights.view.less");
+/* harmony import */ var views_ExtensionInsights_view_less__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(views_ExtensionInsights_view_less__WEBPACK_IMPORTED_MODULE_3__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -59031,6 +60146,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
  // TODO: Consider precharts vs recharts
 // TODO: Consider babel-plugin-recharts
+
 
 
 
@@ -59127,23 +60243,24 @@ function () {
   }, {
     key: "viewerActionFunnel",
     get: function get() {
+      var period = "Last 30 Days";
       return {
-        "title": "Viewer Actions Funnel - Today",
+        "title": "Viewer Actions Funnel - " + period,
         "events": [{
           "label": "Renders",
-          "value": this.props.insight["Renders"],
+          "value": this.props.insight["Renders" + " " + period],
           "color": "#3d2fae"
         }, {
           "label": "Views",
-          "value": this.props.insight["Views"],
+          "value": this.props.insight["Views" + " " + period],
           "color": "#6642ba"
         }, {
           "label": "Hovers",
-          "value": this.props.insight["Mouseenters"],
+          "value": this.props.insight["Mouseenters" + " " + period],
           "color": "#8e56c5"
         }, {
           "label": "Clicks",
-          "value": this.props.insight["Clicks"],
+          "value": this.props.insight["Clicks" + " " + period],
           "color": "#b769d1"
         }]
       };
@@ -59151,24 +60268,24 @@ function () {
   }, {
     key: "viewerCountFunnel",
     get: function get() {
-      var period = " Last 30 Days";
+      var period = "Last 30 Days";
       return {
-        "title": "Viewer Funnel -" + (period || " Today"),
+        "title": "Viewer Funnel - " + period,
         "events": [{
           "label": "Unique Renderers",
-          "value": this.props.insight["Unique Renderers" + period],
+          "value": this.props.insight["Unique Renderers" + " " + period],
           "color": "#3d2fae"
         }, {
           "label": "Unique Viewers",
-          "value": this.props.insight["Unique Viewers" + period],
+          "value": this.props.insight["Unique Viewers" + " " + period],
           "color": "#6642ba"
         }, {
           "label": "Unique Hoverers",
-          "value": this.props.insight["Unique Mouseenters" + period],
+          "value": this.props.insight["Unique Mouseenters" + " " + period],
           "color": "#8e56c5"
         }, {
           "label": "Unique Clickers",
-          "value": this.props.insight["Unique Interactors" + period],
+          "value": this.props.insight["Unique Interactors" + " " + period],
           "color": "#b769d1"
         }]
       };
@@ -59176,19 +60293,20 @@ function () {
   }, {
     key: "streamerActionFunnel",
     get: function get() {
+      var period = "Last 30 Days";
       return {
-        "title": "Streamer Actions Funnel - Today",
+        "title": "Streamer Actions Funnel - " + period,
         "events": [{
           "label": "Browses",
-          "value": this.props.insight["Extension Details Page Visits"],
+          "value": this.props.insight["Extension Details Page Visits" + " " + period],
           "color": "#3d2fae"
         }, {
           "label": "Installs",
-          "value": this.props.insight["Installs"],
+          "value": this.props.insight["Installs" + " " + period],
           "color": "#7a4cc0"
         }, {
           "label": "Activations",
-          "value": this.props.insight["Activations"],
+          "value": this.props.insight["Activations" + " " + period],
           "color": "#b769d1"
         }]
       };
@@ -59376,9 +60494,10 @@ function toPercentage(value) {
 function toCount(value) {
   if (value < 1000) {
     return value;
+  } else {
+    // value like "1.00k, 3.29m, 5.67b"
+    return new numeral__WEBPACK_IMPORTED_MODULE_2___default.a(value).format("0a");
   }
-
-  return Math.round(value / 1000) + "k";
 } // Colors were generated and selected from:
 // https://www.colorhexa.com/3d2fae-to-b769d1
 
@@ -59425,14 +60544,13 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Mount; });
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.mjs");
-/* harmony import */ var csv_parse_lib_sync__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! csv-parse/lib/sync */ "./node_modules/csv-parse/lib/sync.js");
-/* harmony import */ var csv_parse_lib_sync__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(csv_parse_lib_sync__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var drag_drop_buffer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! drag-drop/buffer */ "./node_modules/drag-drop/buffer.js");
-/* harmony import */ var drag_drop_buffer__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(drag_drop_buffer__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var views_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! views/.js */ "./source/views/.js");
+/* harmony import */ var drag_drop_buffer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! drag-drop/buffer */ "./node_modules/drag-drop/buffer.js");
+/* harmony import */ var drag_drop_buffer__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(drag_drop_buffer__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var views_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! views/.js */ "./source/views/.js");
+/* harmony import */ var views_Mount_view_less__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! views/Mount.view.less */ "./source/views/Mount.view.less");
+/* harmony import */ var views_Mount_view_less__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(views_Mount_view_less__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var views_ExtensionInsights_view_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! views/ExtensionInsights.view.js */ "./source/views/ExtensionInsights.view.js");
-/* harmony import */ var views_Mount_view_less__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! views/Mount.view.less */ "./source/views/Mount.view.less");
-/* harmony import */ var views_Mount_view_less__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(views_Mount_view_less__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var models_Collection_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! models/Collection.js */ "./source/models/Collection.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -59446,16 +60564,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  // import GameInsights from "views/GameInsights.view.js"
 
 
-var CSV_PARSE_OPTIONS = {
-  "cast": true,
-  "columns": true
-};
-var EXAMPLE_CSV = "Date,Extension Name,Extension Client ID,Extension Details Page Visits,Unique Extension Details Page Visits,Installs,Uninstalls,Activations,Unique Active Channels,Unique Active Channels Last 7 Days,Unique Active Channels Last 30 Days,Unique Identity Links,Unique Identity Unlinks,Renders,Unique Renderers,Unique Renderers Last 7 Days,Unique Renderers Last 30 Days,Views,Unique Viewers,Unique Viewers Last 7 Days,Unique Viewers Last 30 Days,Mouseenters,Unique Mouseenters,Unique Mouseenters Last 7 Days,Unique Mouseenters Last 30 Days,Mouseenters Per Viewer,Mouseenter Rate,Clicks,Unique Interactors,Unique Interactors Last 7 Days,Unique Interactors Last 30 Days,Clicks Per Interactor,Interaction Rate,Minimizations,Unique Minimizers,Minimization Rate,Unminimizations,Unique Unminimizers,Unminimization Rate,Bits Revenue USD,Bits Used,Bits Transactions,Bits Per Transaction,Unique Bits Users,Unique Bits Users Last 7 Days,Unique Bits Users Last 30 Days,Bits Used Per User\n5/31/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz51,42,13,18,5,9,164,462,756,51,8,23954,13084,80730,168982,23954,13084,80730,168982,51796,7564,40166,79960,3.9587,0.5781,6512,1365,6848,15464,4.7707,0.1043,410,369,0.0282,12,10,0.0009,1.08,540,32,16.875,30,132,417,18\n6/1/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz52,30,11,14,5,5,124,434,714,37,5,17286,9308,79066,163978,17286,9308,79066,163978,40010,5462,39166,77026,4.2985,0.5868,4412,1182,6926,14972,3.7327,0.127,292,273,0.0293,10,8,0.0011,0.87,435,38,11.4474,15,117,402,29\n6/2/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz53,21,8,14,5,5,128,440,694,15,2,7930,5220,84282,163124,7930,5220,84282,163124,10516,2208,42176,75940,2.0146,0.423,1700,411,7636,14716,4.1363,0.0787,60,51,0.0098,4,4,0.0008,0.06,30,4,7.5,6,117,396,5\n6/3/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz54,30,11,11,6,5,132,438,678,27,2,28412,21270,87358,165508,28412,21270,87358,165508,33464,7638,44426,76154,1.5733,0.3591,5356,1290,8760,14664,4.1519,0.0606,250,312,0.0147,4,4,0.0002,0.69,345,8,43.125,9,129,405,38.3333\n6/4/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz55,31,10,16,4,8,184,442,654,51,6.5,31360,18238,80720,152212,31360,18238,80720,152212,62222,9678,44510,72208,3.4117,0.5307,7754,1986,10142,14124,3.9043,0.1089,466,477,0.0262,18,18,0.001,1.14,570,36,15.8333,33,162,408,17.2727\n6/5/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz56,29,11,19,4,7,130,412,616,31,3.5,25562,14628,75620,147288,25562,14628,75620,147288,53390,7916,41896,69244,3.6498,0.5412,6670,1620,9414,13428,4.1173,0.1107,410,405,0.0277,2,2,0.0001,1.08,540,12,45,9,153,405,60\n6/6/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz57,35,12,15,4,7,162,388,592,39,5,29130,18574,72038,144320,29130,18574,72038,144320,59696,10256,39912,66560,3.214,0.5522,7512,1884,8876,12836,3.9873,0.1014,458,507,0.0273,26,16,0.0014,1.32,660,58,11.3793,30,165,420,22\n6/7/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz58,26,8,12,3,5,124,348,554,31,5,24184,14830,62452,138678,24184,14830,62452,138678,50960,7926,34506,61998,3.4363,0.5345,8434,1860,8056,12108,4.5344,0.1254,552,504,0.034,30,18,0.002,0.72,360,10,36,12,144,411,30\n6/8/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz59,20,7,12,4,6,120,330,542,43,6.5,19732,12308,58580,133930,19732,12308,58580,133930,39890,6588,31670,59152,3.241,0.5353,7256,1560,7294,11356,4.6513,0.1267,436,468,0.038,14,14,0.0011,0.81,405,28,14.4643,18,150,411,22.5\n6/9/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz60,24,8,12,3,7,134,324,538,41,6.5,30622,17092,56124,129834,30622,17092,56124,129834,63590,9626,29608,56998,3.7205,0.5632,11176,2493,6692,10768,4.483,0.1459,726,624,0.0365,16,14,0.0009,1.89,945,14,67.5,15,141,429,63";
-var collections = [{
-  "type": "Extension",
-  "insights": csv_parse_lib_sync__WEBPACK_IMPORTED_MODULE_1___default()(EXAMPLE_CSV, CSV_PARSE_OPTIONS),
+var EXAMPLE_INSIGHTS = "Date,Extension Name,Extension Client ID,Extension Details Page Visits,Unique Extension Details Page Visits,Installs,Uninstalls,Activations,Unique Active Channels,Unique Active Channels Last 7 Days,Unique Active Channels Last 30 Days,Unique Identity Links,Unique Identity Unlinks,Renders,Unique Renderers,Unique Renderers Last 7 Days,Unique Renderers Last 30 Days,Views,Unique Viewers,Unique Viewers Last 7 Days,Unique Viewers Last 30 Days,Mouseenters,Unique Mouseenters,Unique Mouseenters Last 7 Days,Unique Mouseenters Last 30 Days,Mouseenters Per Viewer,Mouseenter Rate,Clicks,Unique Interactors,Unique Interactors Last 7 Days,Unique Interactors Last 30 Days,Clicks Per Interactor,Interaction Rate,Minimizations,Unique Minimizers,Minimization Rate,Unminimizations,Unique Unminimizers,Unminimization Rate,Bits Revenue USD,Bits Used,Bits Transactions,Bits Per Transaction,Unique Bits Users,Unique Bits Users Last 7 Days,Unique Bits Users Last 30 Days,Bits Used Per User\n5/31/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz51,42,13,18,5,9,164,462,756,51,8,23954,13084,80730,168982,23954,13084,80730,168982,51796,7564,40166,79960,3.9587,0.5781,6512,1365,6848,15464,4.7707,0.1043,410,369,0.0282,12,10,0.0009,1.08,540,32,16.875,30,132,417,18\n6/1/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz52,30,11,14,5,5,124,434,714,37,5,17286,9308,79066,163978,17286,9308,79066,163978,40010,5462,39166,77026,4.2985,0.5868,4412,1182,6926,14972,3.7327,0.127,292,273,0.0293,10,8,0.0011,0.87,435,38,11.4474,15,117,402,29\n6/2/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz53,21,8,14,5,5,128,440,694,15,2,7930,5220,84282,163124,7930,5220,84282,163124,10516,2208,42176,75940,2.0146,0.423,1700,411,7636,14716,4.1363,0.0787,60,51,0.0098,4,4,0.0008,0.06,30,4,7.5,6,117,396,5\n6/3/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz54,30,11,11,6,5,132,438,678,27,2,28412,21270,87358,165508,28412,21270,87358,165508,33464,7638,44426,76154,1.5733,0.3591,5356,1290,8760,14664,4.1519,0.0606,250,312,0.0147,4,4,0.0002,0.69,345,8,43.125,9,129,405,38.3333\n6/4/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz55,31,10,16,4,8,184,442,654,51,6.5,31360,18238,80720,152212,31360,18238,80720,152212,62222,9678,44510,72208,3.4117,0.5307,7754,1986,10142,14124,3.9043,0.1089,466,477,0.0262,18,18,0.001,1.14,570,36,15.8333,33,162,408,17.2727\n6/5/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz56,29,11,19,4,7,130,412,616,31,3.5,25562,14628,75620,147288,25562,14628,75620,147288,53390,7916,41896,69244,3.6498,0.5412,6670,1620,9414,13428,4.1173,0.1107,410,405,0.0277,2,2,0.0001,1.08,540,12,45,9,153,405,60\n6/6/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz57,35,12,15,4,7,162,388,592,39,5,29130,18574,72038,144320,29130,18574,72038,144320,59696,10256,39912,66560,3.214,0.5522,7512,1884,8876,12836,3.9873,0.1014,458,507,0.0273,26,16,0.0014,1.32,660,58,11.3793,30,165,420,22\n6/7/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz58,26,8,12,3,5,124,348,554,31,5,24184,14830,62452,138678,24184,14830,62452,138678,50960,7926,34506,61998,3.4363,0.5345,8434,1860,8056,12108,4.5344,0.1254,552,504,0.034,30,18,0.002,0.72,360,10,36,12,144,411,30\n6/8/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz59,20,7,12,4,6,120,330,542,43,6.5,19732,12308,58580,133930,19732,12308,58580,133930,39890,6588,31670,59152,3.241,0.5353,7256,1560,7294,11356,4.6513,0.1267,436,468,0.038,14,14,0.0011,0.81,405,28,14.4643,18,150,411,22.5\n6/9/2018,Example Extension,hs5z3fh5dxhshfhazhk4hq38g9hz60,24,8,12,3,7,134,324,538,41,6.5,30622,17092,56124,129834,30622,17092,56124,129834,63590,9626,29608,56998,3.7205,0.5632,11176,2493,6692,10768,4.483,0.1459,726,624,0.0365,16,14,0.0009,1.89,945,14,67.5,15,141,429,63";
+var collections = [new models_Collection_js__WEBPACK_IMPORTED_MODULE_5__["default"]({
+  "insights": EXAMPLE_INSIGHTS,
   "isExample": true
-}];
+})];
 
 var Mount =
 /*#__PURE__*/
@@ -59474,32 +60587,14 @@ function () {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      drag_drop_buffer__WEBPACK_IMPORTED_MODULE_2___default()("#mount", function (files) {
+      drag_drop_buffer__WEBPACK_IMPORTED_MODULE_1___default()("#mount", function (files) {
         files.forEach(function (file) {
-          // Create a new insight object.
-          var collection = {
+          collections.unshift(new models_Collection_js__WEBPACK_IMPORTED_MODULE_5__["default"]({
             "filename": file.name,
-            "filesize": file.size // Attempt to parse the insights data.
-
-          };
-
-          try {
-            collection.insights = file.toString("utf8");
-            collection.insights = csv_parse_lib_sync__WEBPACK_IMPORTED_MODULE_1___default()(collection.insights, CSV_PARSE_OPTIONS);
-          } catch (error) {
-            console.error("Could not parse \"".concat(file.name, "\""));
-            console.error(error);
-            return;
-          } // Recognize the insights type.
-
-
-          if (!!collection.insights[0]["Extension Name"]) {
-            collection.type = "Extension";
-          } // Add the insights to the store.
-
-
-          collections.unshift(collection);
-          views_js__WEBPACK_IMPORTED_MODULE_3__["default"].render();
+            "filesize": file.size,
+            "insights": file
+          }));
+          views_js__WEBPACK_IMPORTED_MODULE_2__["default"].render();
         });
       });
     }
