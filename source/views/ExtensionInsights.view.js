@@ -86,77 +86,79 @@ export default class ExtensionInsights {
         }
     }
     get viewerActionFunnel() {
+        let period = "Last 30 Days"
         return {
-            "title": "Viewer Actions Funnel - Today",
+            "title": "Viewer Actions Funnel - " + period,
             "events": [
                 {
                     "label": "Renders",
-                    "value": this.props.insight["Renders"],
+                    "value": this.props.insight["Renders" + " " + period],
                     "color": "#3d2fae",
                 },
                 {
                     "label": "Views",
-                    "value": this.props.insight["Views"],
+                    "value": this.props.insight["Views" + " " + period],
                     "color": "#6642ba",
                 },
                 {
                     "label": "Hovers",
-                    "value": this.props.insight["Mouseenters"],
+                    "value": this.props.insight["Mouseenters" + " " + period],
                     "color": "#8e56c5",
                 },
                 {
                     "label": "Clicks",
-                    "value": this.props.insight["Clicks"],
+                    "value": this.props.insight["Clicks" + " " + period],
                     "color": "#b769d1",
                 },
             ]
         }
     }
     get viewerCountFunnel() {
-        let period = " Last 30 Days"
+        let period = "Last 30 Days"
         return {
-            "title": "Viewer Funnel -" + (period || " Today"),
+            "title": "Viewer Funnel - " + period,
             "events": [
                 {
                     "label": "Unique Renderers",
-                    "value": this.props.insight["Unique Renderers" + period],
+                    "value": this.props.insight["Unique Renderers" + " " + period],
                     "color": "#3d2fae",
                 },
                 {
                     "label": "Unique Viewers",
-                    "value": this.props.insight["Unique Viewers" + period],
+                    "value": this.props.insight["Unique Viewers" + " " + period],
                     "color": "#6642ba",
                 },
                 {
                     "label": "Unique Hoverers",
-                    "value": this.props.insight["Unique Mouseenters" + period],
+                    "value": this.props.insight["Unique Mouseenters" + " " + period],
                     "color": "#8e56c5",
                 },
                 {
                     "label": "Unique Clickers",
-                    "value": this.props.insight["Unique Interactors" + period],
+                    "value": this.props.insight["Unique Interactors" + " " + period],
                     "color": "#b769d1",
                 },
             ]
         }
     }
     get streamerActionFunnel() {
+        let period = "Last 30 Days"
         return {
-            "title": "Streamer Actions Funnel - Today",
+            "title": "Streamer Actions Funnel - " + period,
             "events": [
                 {
                     "label": "Browses",
-                    "value": this.props.insight["Extension Details Page Visits"],
+                    "value": this.props.insight["Extension Details Page Visits" + " " + period],
                     "color": "#3d2fae",
                 },
                 {
                     "label": "Installs",
-                    "value": this.props.insight["Installs"],
+                    "value": this.props.insight["Installs" + " " + period],
                     "color": "#7a4cc0",
                 },
                 {
                     "label": "Activations",
-                    "value": this.props.insight["Activations"],
+                    "value": this.props.insight["Activations" + " " + period],
                     "color": "#b769d1",
                 },
             ]
