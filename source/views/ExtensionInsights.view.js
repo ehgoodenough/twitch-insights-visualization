@@ -1,8 +1,8 @@
-const numeral = require("numeral");
 import Preact from "preact"
 import * as Recharts from "recharts"
 // TODO: Consider precharts vs recharts
 // TODO: Consider babel-plugin-recharts
+import Numeral from "numeral"
 
 import "views/ExtensionInsights.view.less"
 
@@ -258,10 +258,10 @@ function toPercentage(value) {
 
 function toCount(value) {
     if(value < 1000) {
-        return String(value)
+        return value
     } else {
         // value like "1.00k, 3.29m, 5.67b"
-        return numeral(value).format("0.00a")
+        return new Numeral(value).format("0a")
     }
 }
 
