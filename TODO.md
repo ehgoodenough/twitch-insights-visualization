@@ -1,7 +1,6 @@
 Dates:
 - Add controls for setting the date to a specific day.
 - Add controls to switch between 1 day, 7 day or 30 day.
-    - Aggregate the actions data for 1/7/30 days, for parity.
 
 Compare:
 - Add the ability to compare 2 insights.
