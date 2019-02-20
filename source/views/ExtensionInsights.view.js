@@ -1,7 +1,5 @@
 import Preact from "preact"
-import * as Recharts from "recharts"
-// TODO: Consider precharts vs recharts
-// TODO: Consider babel-plugin-recharts
+import * as Precharts from "precharts"
 import Numeral from "numeral"
 
 import "views/ExtensionInsights.view.less"
@@ -182,24 +180,24 @@ class Graph {
         return (
             <div class="Graph Visualization">
                 <div class="Title">{this.props.graph.title}</div>
-                <Recharts.ResponsiveContainer width="100%" height="100%">
-                    <Recharts.AreaChart data={this.props.graph.data}>
+                <Precharts.ResponsiveContainer width="100%" height="100%">
+                    <Precharts.AreaChart data={this.props.graph.data}>
                         <defs>
                             <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
                                 <stop offset="5%" stopColor="#3d2fae" stopOpacity={0.8}/>
                                 <stop offset="95%" stopColor="#b769d1" stopOpacity={0}/>
                             </linearGradient>
                         </defs>
-                        <Recharts.CartesianGrid stroke="#CCC" strokeDasharray="3 3"/>
-                        <Recharts.XAxis dataKey="date" minTickGap={30} axisLine={false}/>
-                        <Recharts.YAxis orientation="right" axisLine={false} mirror={true}/>
-                        {true ||<Recharts.Legend/>}
-                        <Recharts.Tooltip animationDuration={100}/>
+                        <Precharts.CartesianGrid stroke="#CCC" strokeDasharray="3 3"/>
+                        <Precharts.XAxis dataKey="date" minTickGap={30} axisLine={false}/>
+                        <Precharts.YAxis orientation="right" axisLine={false} mirror={true}/>
+                        {true ||<Precharts.Legend/>}
+                        <Precharts.Tooltip animationDuration={100}/>
                         {Object.keys(this.props.graph.data[0]).filter((key) => key !== "date").map((key) => (
-                            <Recharts.Area dataKey={key} stroke="#3d2fae" fillOpacity={1} fill="url(#gradient)" type="monotone"/>
+                            <Precharts.Area dataKey={key} stroke="#3d2fae" fillOpacity={1} fill="url(#gradient)" type="monotone"/>
                         ))}
-                    </Recharts.AreaChart>
-                </Recharts.ResponsiveContainer>
+                    </Precharts.AreaChart>
+                </Precharts.ResponsiveContainer>
             </div>
         )
     }
