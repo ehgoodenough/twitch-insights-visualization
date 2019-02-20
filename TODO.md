@@ -7,11 +7,13 @@ Compare:
 - Add the ability to compare 2 different dates for the same extension.
 - Add default aggregated benchmark data?
 
-........
-
 File Handling
 - Add a file picker form instead of just drag-and-drop.
 - Fix the drag-and-drop prompt while on small screens.
+
+Share on NPM & Twitter & etc.
+
+........
 
 Visualizations:
 - Add a graph for unique viewers / hoverers / interactors over time.
@@ -24,3 +26,4 @@ Visualizations:
 - Add scraping for logo and summary of extension?
 - Add support for the games insights csv format.
 - Review the metrics to see what else you should add, like bits or unminimizations or links. How to quantify things like churn or retention?
+- Retrieve the data for me!
